@@ -53,12 +53,12 @@ const Adagrams = {
   },
 
   usesAvailableLetters(input, lettersInHand) {
-    if (input.length < lettersInHand.length) {
+    if (input.length > lettersInHand.length) {
       return false;
     }
       
-    handCount = {};
-    inputCount = {};
+    let handCount = {};
+    let inputCount = {};
 
     lettersInHand.forEach ( (letter) => {
       if (typeof handCount[letter] === 'undefined') {
@@ -68,7 +68,7 @@ const Adagrams = {
       handCount[letter] += 1;
     });
 
-    inputArr = input.split('');
+    const inputArr = input.split('');
 
     inputArr.forEach ( (letter) => {
       if (typeof inputCount[letter] === 'undefined') {
@@ -78,17 +78,23 @@ const Adagrams = {
       inputCount[letter] += 1;
     });
 
-    for (letter in Object.keys(inputCount)) {
-      if (typeof handCount[letter] === 'undefined' || handcount[letter] < inputCount[letter]) {
+    for (let letter in inputCount) {
+      if (typeof handCount[letter] === 'undefined' || handCount[letter] < inputCount[letter]) {
         return false;
       }
     }
 
-    return true
+    return true;
+  },
+
+  scoreWord(word) {
+    const scoreChart = {
+      
+    }
   },
 };
 
-// Adagrams.usesAvailableLetters('', ['A','A','B','D','D','A','B'])
+
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
