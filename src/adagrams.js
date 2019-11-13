@@ -27,7 +27,7 @@ const Adagrams = {
       X: 1,
       Y: 2,
       Z: 1
-    };
+    }
 
     // Add letters to an array
     let letterPoolArray = [];
@@ -41,7 +41,7 @@ const Adagrams = {
     }
 
     // Select random 10 letters for hand
-    const lettersInHand = [];
+    let lettersInHand = [];
     let j = 0;
     while (j < 10) {
       lettersInHand.push(letterPoolArray[Math.floor(Math.random() * letterPoolArray.length)]);
@@ -49,9 +49,24 @@ const Adagrams = {
     }
 
     return lettersInHand;
-  };
+  },
+  usesAvailableLetters(word, lettersInHand) {
+    let allValid = true;
+
+    for (const wordIndex in word) {
+      if (lettersInHand.includes(word[wordIndex])) {
+        const handIndex = lettersInHand.indexOf(word[wordIndex]);
+        lettersInHand.splice(handIndex, 1);
+      } else {
+        allValid = false;
+      }
+    }
+    
+    return allValid;
+  }
 };
 
+//Adagrams.usesAvailableLetters("DOG", ["A", "G", "O", "D"])
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
