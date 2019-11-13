@@ -31,15 +31,17 @@ const Adagrams = {
     // choose ten random letters from pool
     let hand = [];
     while (hand.length < 10) {
-      // ensure max decreases as items are added to the hand 
-      // (and thus deleted from the pool)
-      const maxIndex = countIndices - hand.length;
       // find a random pool index
-      const randIndex = Math.floor(Math.random() * maxIndex);
+      const randIndex = Math.floor(Math.random() * countIndices);
+      const chosenLetter = letterPool[randIndex];
+      // if it's not nil,
       // add it to the hand
-      hand.push(letterPool[randIndex]);
-      // delete the chosen letter from the pool
-      letterPool.splice(randIndex, 1);
+      if (chosenLetter) {
+        hand.push(chosenLetter);
+      }
+      // make the chosen letter null
+      // so it can't get picked again
+      letterPool[randIndex] = null;
     }
     return hand;
   },
