@@ -36,6 +36,20 @@ const Adagrams = {
     }
 
     return hand;
+  },
+
+  usesAvailableLetters(input, hand) {
+    let split = input.toUpperCase().split("");
+    let copy = hand.slice(0);
+
+    for (let letter in split) {
+      if (copy.includes(split[letter])) {
+        copy.splice(copy.indexOf(split[letter]), 1);
+      } else {
+        return false;
+      }
+    }
+    return true;
   }
 };
 
