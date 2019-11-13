@@ -44,6 +44,7 @@ const Adagrams = {
   },
 
   usesAvailableLetters(input, lettersInHand) {
+
     
   }
 };
