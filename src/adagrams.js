@@ -95,8 +95,14 @@ const Adagrams = {
     }
 
     let pointCount = 0;
-    for (const charIndex in word) {
-      pointCount += letterPointValues[word[charIndex]];
+    if (word.length > 6 ){
+      pointCount += 8;
+    }
+
+    // Convert word to upper case for comparison
+    const upcaseWord = word.toUpperCase();
+    for (const charIndex in upcaseWord) {
+      pointCount += letterPointValues[upcaseWord[charIndex]];
     }
 
     return pointCount;
