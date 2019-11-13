@@ -57,18 +57,35 @@ const Adagrams = {
       // ...add to player's tray
       tray.push(newBag[randomIndex]);
     }
-
     return tray;
+  },
+
+  remove(element, array) {
+    // removes a single element from array
+    let garbage_index = array.indexOf(element);
+    array.splice(garbage_index, 1);
+  },
+
+  usesAvailableLetters(input, lettersInHand) {
+    // input = string, supposedly made from the lettersInHand
+    // lettersInHand = array of 10 single-letter strings
+    // returns T if input is legit, else F
+    for (let i=0; i<input.length; i++) {
+
+      if (lettersInHand.includes(input[i])) {
+        this.remove(input[i], lettersInHand);
+      } else {
+        return false;
+      }
+    }
+    return true;
   },
 
 };
 
-console.log(Adagrams.drawLetters());
+// console.log(Adagrams.usesAvailableLetters("abcda", ['a','b','c','d','e']));
 
 
 
-
-
-// REACTIVATE line later!!!
 // Do not remove this line or your tests will break!
-// export default Adagrams;
+export default Adagrams;
