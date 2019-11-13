@@ -28,7 +28,6 @@ const Adagrams = {
         lettersInHand.splice(lettersInHand.indexOf(letter), 1)
         // delete lettersInHand[lettersInHand.indexOf(letter)];
         result = true;
-        console.log(lettersInHand);
       } else {
         result = false;
       }
@@ -54,17 +53,29 @@ const Adagrams = {
     word.forEach(function (letter) {
       Object.keys(letterValues).forEach(function (key) {
         if (letterValues[key].includes(letter)) {
-          // console.log(key)
           points += parseInt(key)
         }
       })
     })
-    console.log(points);
     return points;
+  },
+
+  highestScoreFrom(words) {
+    // pseudocode
+    // takes in 'words' which is an array of strings
+    // evaluates score of each word
+    // evaluates which word has the highest score
+      // if there is a tie,
+      // check if one word has 10 letters
+      // if so, that's the winner
+        // if there are two, the first wins
+      // if no words have 10 letters,
+        // prefer the word with fewer letters
+    // returns a hash object with the winning word & score
+    
   }
 };
-// Adagrams.drawLetters();
-// const letters = ['C','C','A','F','R','G','T'];
-// Adagrams.usesAvailableLetters('cat', letters);
+
+
 // Do not remove this line or your tests will break!
 export default Adagrams;
