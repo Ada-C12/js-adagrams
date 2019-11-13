@@ -25,7 +25,8 @@ const Adagrams = {
     let result = true;
     input.split("").forEach(function (letter) {
       if (lettersInHand.includes(letter) && result != false) {
-        delete lettersInHand[lettersInHand.indexOf(letter)];
+        lettersInHand.splice(lettersInHand.indexOf(letter), 1)
+        // delete lettersInHand[lettersInHand.indexOf(letter)];
         result = true;
         console.log(lettersInHand);
       } else {
@@ -35,6 +36,35 @@ const Adagrams = {
     return result;
   },
 
+  scoreWord(word) {
+    let points = 0;
+    word = word.toUpperCase().split("")
+    if (word.length >= 7) {
+      points += 8
+    }
+    const letterValues = {
+      1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
+      2: ['D', 'G'],
+      3: ['B', 'C', 'M', 'P'],
+      4: ['F', 'H', 'V', 'W', 'Y'],
+      5: ['K'],
+      8: ['J', 'X'],
+      10: ['Q','Z']
+    }
+    word.forEach(function (letter) {
+      Object.keys(letterValues).forEach(function (key) {
+        if (letterValues[key].includes(letter)) {
+          // console.log(key)
+          points += parseInt(key)
+        }
+      })
+    })
+    console.log(points);
+    return points;
+  }
 };
+// Adagrams.drawLetters();
+// const letters = ['C','C','A','F','R','G','T'];
+// Adagrams.usesAvailableLetters('cat', letters);
 // Do not remove this line or your tests will break!
 export default Adagrams;
