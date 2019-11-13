@@ -24,8 +24,6 @@ const Adagrams = {
     return letterPool;
   },
   drawLetters() {
-    // Implement this method for wave 1
-
     // create letter pool
     let letterPool = this.buildLetterPool();
     const countIndices = (letterPool.length - 1);
@@ -43,7 +41,6 @@ const Adagrams = {
       // delete the chosen letter from the pool
       letterPool.splice(randIndex, 1);
     }
-
     return hand;
   },
   usesAvailableLetters(input, lettersInHand) {
@@ -72,6 +69,31 @@ const Adagrams = {
       }
     }
     return usesLetters
+  },
+  scoreWord(word) {
+    const scoreChart = {
+      "A": 1, "E": 1, "I": 1, "O": 1, "U": 1, "L": 1, "N": 1, "R": 1, "S": 1, "T": 1,
+      "D": 2, "G": 2,
+      "B": 3, "C": 3, "M": 3, "P": 3,
+      "F": 4, "H": 4, "V": 4, "W": 4, "Y": 4,
+      "K": 5,
+      "J": 8, "X": 8,
+      "Q": 10, "Z": 10 
+    }
+
+    let wordScore = 0;
+    for (const letter of word) {
+      wordScore += scoreChart[letter.toUpperCase()];
+    }
+
+    // If the length of the word is 7, 8, 9, or 10, 
+    // then the word gets an additional 8 points
+    const wordLength = word.length;
+    if (wordLength >= 7 && wordLength <= 10 ) {
+      wordScore += 8;
+    }
+
+    return wordScore;
   },
 };
 
