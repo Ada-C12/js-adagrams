@@ -97,6 +97,36 @@ const Adagrams = {
 
     return wordScore;
   },
+  highestScoreFrom(words) {
+    let highestScoringWord = {
+      "word": '',
+      "score": 0,
+    };
+
+    // helper function
+    const makeHighestWord = (word, score) => {
+      highestScoringWord.word = word;
+      highestScoringWord.score = score;
+    }
+
+    for (const word of words) {
+      const score = this.scoreWord(word);
+
+      if (score === highestScoringWord.score) {
+        const highestLength = highestScoringWord.word.length;
+        // if they are the same, there is a tie;
+        // prefer the word with 10 or more letters
+        // or prefer the word with the fewest letters
+        if ((word.length >= 10) && (highestLength < 10)
+        ||(word.length < highestLength) && (highestLength < 10)) {
+          makeHighestWord(word, score);
+        }
+      } else if (score > highestScoringWord.score) {
+        makeHighestWord(word, score);
+      }
+    }
+    return highestScoringWord;
+  },
 };
 
 // Do not remove this line or your tests will break!
