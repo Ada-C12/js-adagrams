@@ -106,6 +106,50 @@ const Adagrams = {
     }
 
     return points;
+  },
+
+  highestScoreFrom(words) {
+    let wordScore = [];
+
+    for (let word in words) {
+      let wordObj = { word: words[word], score: this.scoreWord(words[word]) };
+
+      wordScore.push(wordObj);
+    }
+
+    let max = 0;
+    wordScore.forEach(word => {
+      if (word.score > max) {
+        max = word.score;
+      }
+    });
+
+    let winners = [];
+    wordScore.forEach(word => {
+      if (word.score === max) {
+        winners.push(word);
+      }
+    });
+
+    let tenChar = [];
+    winners.forEach(word => {
+      if (word.word.length === 10) {
+        tenChar.push(word);
+      }
+    });
+
+    if (tenChar.length > 0) {
+      return tenChar[0];
+    } else {
+      let minWinners = winners[0];
+
+      winners.forEach(word => {
+        if (word.word.length < minWinners.word.length) {
+          minWinners = word;
+        }
+      });
+      return minWinners;
+    }
   }
 };
 
