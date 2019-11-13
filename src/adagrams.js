@@ -1,6 +1,6 @@
 const Adagrams = {
   drawLetters() {
-    // Implement this method for wave 1
+    
   },
 };
 
