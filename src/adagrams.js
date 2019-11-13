@@ -38,9 +38,9 @@ const Adagrams = {
     return hand;
   },
 
-  usesAvailableLetters(input, hand) {
+  usesAvailableLetters(input, lettersInHand) {
     let split = input.toUpperCase().split("");
-    let copy = hand.slice(0);
+    let copy = lettersInHand.slice(0);
 
     for (let letter in split) {
       if (copy.includes(split[letter])) {
@@ -52,8 +52,8 @@ const Adagrams = {
     return true;
   },
 
-  scoreWord(input) {
-    let split = input.toUpperCase().split("");
+  scoreWord(word) {
+    let split = word.toUpperCase().split("");
     let points = 0;
 
     for (let letter in split) {
