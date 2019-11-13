@@ -46,6 +46,33 @@ const Adagrams = {
 
     return hand;
   },
+  usesAvailableLetters(input, lettersInHand) {
+    // make a hash from lettersInHand for quick lookup
+    let lettersInHandObj = {};
+    for (const letter of lettersInHand) {
+      if (!lettersInHandObj[letter]) {
+        lettersInHandObj[letter] = 1;
+      } else {
+        lettersInHandObj[letter] += 1;
+      }
+    }
+
+    let usesLetters = true;
+    // loop through input characters
+    for (const char of input) {
+      // for every letter that matches a letter in hand
+      // remove that letter from hand
+      // (you don't need to actually delete the letter key,
+      // as it will eventually reach 0 and then be deemed falsey
+      // causing the code to go into the else)
+      if (lettersInHandObj[char]) {
+        lettersInHandObj[char] -= 1;
+      } else {
+        usesLetters = false
+      }
+    }
+    return usesLetters
+  },
 };
 
 // Do not remove this line or your tests will break!
