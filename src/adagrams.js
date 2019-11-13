@@ -50,12 +50,12 @@ const Adagrams = {
 
     return lettersInHand;
   },
-  usesAvailableLetters(word, lettersInHand) {
+  usesAvailableLetters(input, lettersInHand) {
     let allValid = true;
 
-    for (const wordIndex in word) {
-      if (lettersInHand.includes(word[wordIndex])) {
-        const handIndex = lettersInHand.indexOf(word[wordIndex]);
+    for (const charIndex in input) {
+      if (lettersInHand.includes(input[charIndex])) {
+        const handIndex = lettersInHand.indexOf(input[charIndex]);
         lettersInHand.splice(handIndex, 1);
       } else {
         allValid = false;
@@ -63,10 +63,47 @@ const Adagrams = {
     }
     
     return allValid;
+  },
+  scoreWord(word) {
+    const letterPointValues = {
+      A: 1,
+      E: 1,
+      I: 1, 
+      O: 1,
+      U: 1,
+      L: 1, 
+      N: 1,
+      R: 1,
+      S: 1,
+      T: 1,
+      D: 2, 
+      G: 2,
+      B: 3,
+      C: 3,
+      M: 3,
+      P: 3,
+      F: 4,
+      H: 4,
+      V: 4,
+      W: 4,
+      Y: 4,
+      K: 5,
+      J: 8,
+      X: 8,
+      Q: 10,
+      Z: 10,
+    }
+
+    let pointCount = 0;
+    for (const charIndex in word) {
+      pointCount += letterPointValues[word[charIndex]];
+    }
+
+    return pointCount;
   }
 };
 
-//Adagrams.usesAvailableLetters("DOG", ["A", "G", "O", "D"])
+//console.log(Adagrams.scoreWord("WHIMSY"))
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
