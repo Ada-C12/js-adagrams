@@ -20,6 +20,21 @@ const Adagrams = {
     return strings;
   },
 
+  usesAvailableLetters(input, lettersInHand) {
+    input = input.toUpperCase();
+    let result = true;
+    input.split("").forEach(function (letter) {
+      if (lettersInHand.includes(letter) && result != false) {
+        delete lettersInHand[lettersInHand.indexOf(letter)];
+        result = true;
+        console.log(lettersInHand);
+      } else {
+        result = false;
+      }
+    });
+    return result;
+  },
+
 };
 // Do not remove this line or your tests will break!
 export default Adagrams;
