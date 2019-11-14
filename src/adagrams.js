@@ -1,6 +1,6 @@
-const Adagrams = {
-  drawLetters() {
-    // Implement this method for wave 1
+class Adagrams {
+  static drawLetters() {
+
     const letterPool = {
       'A': 9,
       'B': 2,
@@ -41,9 +41,9 @@ const Adagrams = {
 
     return letterBank;
     
-  },
+  }
 
-  usesAvailableLetters(input, lettersInHand) {
+  static usesAvailableLetters(input, lettersInHand) {
     const inputLetters = input.toUpperCase().split('');
 
     for (let i = 0; i < inputLetters.length; i += 1) {
@@ -56,9 +56,9 @@ const Adagrams = {
       }
     }
     return true;
-  },
+  }
 
-  scoreWord(word) {
+  static scoreWord(word) {
     const scoreChart = {
       'A': 1,
       'B': 3,
@@ -101,12 +101,27 @@ const Adagrams = {
     }
 
     return total;
-  },
-
-  highestScoreFrom(words) {
-    
   }
-};
+
+  static highestScoreFrom(words) {
+    let highestScore = 0;
+    let bestWord = '';
+    
+    for (let i = 0; i < words.length; i += 1) {
+      if (this.scoreWord(words[i]) > highestScore) {
+        highestScore = this.scoreWord(words[i])
+        bestWord = words[i]
+      }
+
+      else if (this.scoreWord(words[i]) === highestScore) {
+        if ((words[i].length === 10 && bestWord.length != 10) || (words[i].length < bestWord.length && bestWord.length != 10)) {
+          bestWord = words[i]
+        }
+      }
+    }
+    return { word: bestWord, score: highestScore };
+  }
+}
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
