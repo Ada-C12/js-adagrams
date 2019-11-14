@@ -115,11 +115,55 @@ const Adagrams = {
       X: 8,
       Y: 4,
       Z: 10,
+    };
+
+    let score;
+    if (word.length >= 7) {
+      score = 8;
+    } else {
+      score = 0;
     }
+
+    let i = 0;
+
+    while (i < word.length) {
+      score += scoreChart[word[i].toUpperCase()];
+      i += 1;
+    }
+
+    return score;
+  },
+
+  highestScoreFrom(words) {
+    let wordScore = {};
+
+    for (let i in words) {
+      let word = words[i];
+      wordScore[word] = Adagrams.scoreWord(word);
+    }
+
+    const scores = Object.values(wordScore);
+    const maxScore = Math.max(...scores);
+
+    let winner = {
+      'word': '',
+      'score': 0,
+    };
+
+    for (let [word, score] of Object.entries(wordScore)) {
+      if (score == maxScore && word.length == 10) {
+        winner['word'] = word;
+        winner['score'] = score;
+        return winner;
+      } else if (score == maxScore && (word.length < winner['word'].length || winner['word'] == '')) {
+        winner['word'] = word;
+        winner['score'] = score;
+      }
+    }
+
+    return winner; 
   },
 };
-
-
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
