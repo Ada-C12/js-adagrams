@@ -1,5 +1,5 @@
-const Adagrams = {
-  buildLetterPool() {
+class Adagrams {
+  static buildLetterPool() {
     const letterWeights = {
       "A": 9, "B": 2, "C": 2, "D": 4,
       "E": 12, "F": 2, "G": 3, "H": 2, 
@@ -22,8 +22,9 @@ const Adagrams = {
     }
 
     return letterPool;
-  },
-  drawLetters() {
+  }
+
+  static drawLetters() {
     // create letter pool
     let letterPool = this.buildLetterPool();
     const countIndices = (letterPool.length - 1);
@@ -44,8 +45,9 @@ const Adagrams = {
       letterPool[randIndex] = null;
     }
     return hand;
-  },
-  usesAvailableLetters(input, lettersInHand) {
+  }
+
+  static usesAvailableLetters(input, lettersInHand) {
     // make a hash from lettersInHand for quick lookup
     let lettersInHandObj = {};
     for (const letter of lettersInHand) {
@@ -71,8 +73,9 @@ const Adagrams = {
       }
     }
     return usesLetters
-  },
-  scoreWord(word) {
+  }
+
+  static scoreWord(word) {
     const scoreChart = {
       "A": 1, "E": 1, "I": 1, "O": 1, "U": 1, "L": 1, "N": 1, "R": 1, "S": 1, "T": 1,
       "D": 2, "G": 2,
@@ -96,8 +99,9 @@ const Adagrams = {
     }
 
     return wordScore;
-  },
-  highestScoreFrom(words) {
+  }
+
+  static highestScoreFrom(words) {
     let highestScoringWord = {
       "word": '',
       "score": 0,
@@ -126,8 +130,8 @@ const Adagrams = {
       }
     }
     return highestScoringWord;
-  },
-};
+  }
+}
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
