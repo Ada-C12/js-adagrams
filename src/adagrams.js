@@ -51,7 +51,8 @@ const Adagrams = {
       if (lettersInHand.includes(wordArray[i]) == false){
         return false;
       } else {
-        lettersInHand.splice(lettersInHand.indexOf(wordArray[i]));
+        let letterIndex = lettersInHand.indexOf(wordArray[i]);
+        lettersInHand.splice(letterIndex,1);
       }
     }
     return true;
