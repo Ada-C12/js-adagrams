@@ -44,8 +44,24 @@ const Adagrams = {
   },
 
   usesAvailableLetters(input, lettersInHand) {
+    const inputLetters = input.toUpperCase().split('');
 
-    
+    for (let i = 0; i < inputLetters.length; i += 1) {
+      if (lettersInHand.includes(inputLetters[i])) {
+        lettersInHand.splice(lettersInHand.indexOf(inputLetters[i]), 1);
+      }
+
+      else {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  scoreWord(word) {
+    const scoreChart = {
+      'A': 
+    }
   }
 };
 
