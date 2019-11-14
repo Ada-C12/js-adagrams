@@ -47,24 +47,74 @@ const Adagrams = {
   },
 
   usesAvailableLetters(input, lettersInHand) {
-    let currentLettersInHand = lettersInHand;
+    let currentLetters = lettersInHand;
     const string = input.toUpperCase();
-    // console.log(lettersInHand)
 
     for (let i = 0; i < string.length; i++) {
       // returns first matching index number
-      const index = currentLettersInHand.indexOf(string[i]);
+      let index = currentLetters.indexOf(string[i]);
+
       if (index !== -1) {
-        currentLettersInHand = currentLettersInHand.replace(currentLettersInHand[index], '');
+        currentLetters.splice(index, 1);
       } else {
         return false;
       }
     }
     return true;
-  }
+  },
+
+  scoreWord(word) {
+    const string = word.toUpperCase();
+    let score = (string.length >= 7) ? 8 : 0;
+    
+    for (let i = 0; i < string.length; i++) {
+      switch (string[i]) {
+      case 'A':
+      case 'E':
+      case 'I':
+      case 'O':
+      case 'U':
+      case 'L':
+      case 'N': 
+      case 'R':
+      case 'S':
+      case 'T':
+        score ++;
+        break;
+      case 'D':
+      case 'G':
+        score += 2;
+        break;
+      case 'B':
+      case 'C':
+      case 'M':
+      case 'P':
+        score += 3;
+        break;
+      case 'F':
+      case 'H':
+      case 'V':
+      case 'W':
+      case 'Y':
+        score += 4;
+        break;
+      case 'K':
+        score += 5;
+        break;
+      case 'J':
+      case 'X':
+        score += 8;
+        break;
+      case 'Q':
+      case 'Z':
+        score += 10
+        break;
+      }
+    }
+    return score
+  },
+
 };
 
-Adagrams.usesAvailableLetters('word', Adagrams.drawLetters())
-
 // Do not remove this line or your tests will break!
-// export default Adagrams;
+export default Adagrams;
