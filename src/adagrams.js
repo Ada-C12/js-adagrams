@@ -56,7 +56,7 @@ const Adagrams = {
       }
     }
     return true;
-  }
+  },
 
   scoreWord(word) {
     const scoreChart = {
@@ -87,6 +87,20 @@ const Adagrams = {
       'Y': 4,
       'Z': 10
     }
+
+    const wordArray = word.toUpperCase().split('');
+
+    let total = 0;
+
+    for (let i = 0; i  < wordArray.length; i += 1) {
+      total += scoreChart[wordArray[i]]
+    }
+
+    if (wordArray.length > 6 && wordArray.length < 11) {
+      total += 8
+    }
+
+    return total;
   }
 };
 
