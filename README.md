@@ -179,7 +179,7 @@ After several hands have been drawn, words have been submitted, checked, scored,
 Add a function named `highestScoreFrom` in the `Adagrams` object in `src/adagrams.js`. This method should have the following properties:
 
 - Has one parameter: `words`, which is an array of strings
-- Returns a single hash that represents the data of a winning word and its score. The hash should have the following keys:
+- Returns a single object that represents the data of a winning word and its score. The object should have the following keys:
   - `:word`, whose value is a string of a word
   - `:score`, whose value is the score of that word
 - In the case of tie in scores, use these tie-breaking rules:
