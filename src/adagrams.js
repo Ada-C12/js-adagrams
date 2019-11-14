@@ -62,16 +62,17 @@ const Adagrams = {
 
   remove(element, array) {
     // removes a single element from array
-    let garbage_index = array.indexOf(element);
-    array.splice(garbage_index, 1);
+    let garbageIndex = array.indexOf(element);
+    array.splice(garbageIndex, 1);
   },
 
-  usesAvailableLetters(input, lettersInHand) {
+  usesAvailableLetters(inputAnyCase, lettersInHand) {
     // input = string, supposedly made from the lettersInHand
     // lettersInHand = array of 10 single-letter strings
     // returns T if input is legit, else F
-    for (let i=0; i<input.length; i++) {
+    let input = inputAnyCase.toUpperCase();
 
+    for (let i=0; i<input.length; i++) {
       if (lettersInHand.includes(input[i])) {
         this.remove(input[i], lettersInHand);
       } else {
@@ -81,10 +82,40 @@ const Adagrams = {
     return true;
   },
 
+  chart: [
+    [['A','E','I','O','U','L','N','R','S','T'], 1],
+    [['D','G'], 2],
+    [['B','C','M','P'], 3],
+    [['F','H','V','W','Y'], 4],
+    [['K'], 5],
+    [['J','X'], 8],
+    [['Q','Z'], 10],
+  ],
+
+  scoreWord(wordAnyCase) {
+    // evals word value according to chart, and returns integer of points
+    let sum = 0;
+    let word = wordAnyCase.toUpperCase();
+
+    // assign value according to this.chart
+    for (let i=0; i<word.length; i++) {
+      for (let entry of this.chart) {
+        if (entry[0].includes(word[i])) {
+          sum += entry[1];
+          break;
+        }
+      }
+    }
+
+    // extra 8 points if length = 7-10
+    if ((word.length >= 7) && (word.length <= 10)){
+      sum += 8;
+    }
+
+    return sum;
+  },
+
 };
-
-// console.log(Adagrams.usesAvailableLetters("abcda", ['a','b','c','d','e']));
-
 
 
 // Do not remove this line or your tests will break!
