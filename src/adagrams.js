@@ -1,4 +1,4 @@
-import { objectExpression } from "@babel/types";
+// import { objectExpression } from "@babel/types";
 
 // const Adagrams = {
   const makeLetters = () => {
@@ -37,10 +37,10 @@ import { objectExpression } from "@babel/types";
       while (i > 0) {
         alphabetArray.push(key);
         i -= 1;
-      };
-    };
+      }
+    }
   return alphabetArray;
-  };
+  }
 // adapted from Fisher-Yates Shuffle
   const shuffle = (array) => {
   let currentIndex = array.length, temporaryValue, randomIndex;
@@ -76,12 +76,15 @@ import { objectExpression } from "@babel/types";
         if (handCollection[letter] < 0) {
           return false;
         }
-      else {
-        return false;
       }
-    }
+      else if (Object.keys(handCollection).includes(letter) ===  false) {
+        return false;
+        }
+    return true
     })
-  }
+    }
+
+
 
     //put all letters w count in a "hash", then check input against
 
@@ -90,6 +93,6 @@ import { objectExpression } from "@babel/types";
 // };
 // use THIS to call make letters once i put them both within Adagrams
 
-usesAvailableLetters('test', drawLetters())
+console.log(usesAvailableLetters('test', drawLetters()))
 // Do not remove this line or your tests will break!
 // export default Adagrams;
