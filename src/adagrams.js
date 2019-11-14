@@ -70,25 +70,17 @@ const Adagrams = {
     };
 
     let scoreTotal = 0;
-    let lettersArray = word.upcase.split("");
+    let lettersArray = word.toUpperCase().split('');
 
     lettersArray.forEach(function(letter){
-      let score = scoreChart.find(letter => letters.includes(letter));
-      scoreTotal += score;
+      for (let score in scoreChart){
+        if (scoreChart[score].includes(letter)){
+          scoreTotal += Number(score);
+        }
+      }
     })
+    return scoreTotal;
   },
-  
-
-  // letters_array.each do |letter|
-  //   score = score_chart.find {|points, letters|
-  //     letters.include?(letter)
-  //   }.first
-  //   score_total += score
-  // end 
-  if word.length > 6
-    score_total += 8
-  end 
-  return score_total
 }
 
 // Do not remove this line or your tests will break!
