@@ -1,3 +1,5 @@
+import { objectExpression } from "@babel/types";
+
 // const Adagrams = {
   const makeLetters = () => {
     const alphabetObject = {
@@ -66,14 +68,21 @@
       }
       else {
         handCollection[letter] += 1
-    }
-  })
-    input.text.toUpperCase().split('').forEach((letter) => {
-      if (handCollection.keys.includes(letter)) {
-        handCollection[letter] -= 1
       }
-})
+      })
+    input.toUpperCase().split('').forEach((letter) => {
+      if (Object.keys(handCollection).includes(letter)) {
+        handCollection[letter] -= 1;
+        if (handCollection[letter] < 0) {
+          return false;
+        }
+      else {
+        return false;
+      }
+    }
+    })
   }
+
     //put all letters w count in a "hash", then check input against
 
 
