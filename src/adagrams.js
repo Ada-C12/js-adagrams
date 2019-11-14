@@ -56,7 +56,39 @@ const Adagrams = {
       }
     }
     return true;
-  }
+  },
+
+  scoreWord(word) {
+    const scoreChart = {
+      1: ["A", "E", "I", "O", "L", "N", "R", "S", "T"],
+      2: ["D", "G"],
+      3: ["B", "C", "M", "P"],
+      4: ["F", "H", "V", "W", "Y"],
+      5: ["K"],
+      8: ["J", "X"],
+      10: ["Q", "Z"]
+    };
+
+    let scoreTotal = 0;
+    let lettersArray = word.upcase.split("");
+
+    lettersArray.forEach(function(letter){
+      let score = scoreChart.find(letter => letters.includes(letter));
+      scoreTotal += score;
+    })
+  },
+  
+
+  // letters_array.each do |letter|
+  //   score = score_chart.find {|points, letters|
+  //     letters.include?(letter)
+  //   }.first
+  //   score_total += score
+  // end 
+  if word.length > 6
+    score_total += 8
+  end 
+  return score_total
 }
 
 // Do not remove this line or your tests will break!
