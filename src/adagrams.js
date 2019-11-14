@@ -79,6 +79,9 @@ const Adagrams = {
         }
       }
     })
+    if (word.length >= 7){
+      scoreTotal += 8;
+    }
     return scoreTotal;
   },
 }
