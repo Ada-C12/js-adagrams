@@ -52,14 +52,20 @@ const Adagrams = {
   },
 
   drawLetters() {
-    return Array(10).fill().map(_ => this.letters()[Math.floor(Math.random()*this.letters().length)]);
+    const pool = this.letters();
+    const randomIndex = () => Math.floor(Math.random() * pool.length)
+    
+    return Array(10).fill().map(() => pool[randomIndex()]);
   },
   
   letters() {
     let pool = [];
 
     for(let letter in this.letterPool) {
-      pool = pool.concat(Array(this.letterPool.letter).fill(letter));
+      const count = this.letterPool.letter;
+      const letters = Array(count).fill(letter);
+      
+      pool = pool.concat(letters);
     }
 
     return pool;
