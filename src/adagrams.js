@@ -14,9 +14,9 @@ const createAlpha = function(letterFreq) {
 const Adagrams = {
   drawLetters() {
     const allLetters = createAlpha(letterFreq)
-    draw = []
-    for (let i = 0; i < 10, i++) {
-      index = [Math.floor ( Math.random() * allLetters.length )]; draw.push(allLetters.splice(index, 1)[0]);
+    let draw = []
+    for (let i = 0; i < 10; i++) {
+      let index = [Math.floor ( Math.random() * allLetters.length )]; draw.push(allLetters.splice(index, 1)[0]);
     }
     console.log(draw);
     return draw
