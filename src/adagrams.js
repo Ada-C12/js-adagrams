@@ -13,8 +13,6 @@ for (let letter in letterDistribution) {
   }
 }
 
-
-
 const scoreChart = {
   A: 1, E: 1, I: 1, O: 1, U: 1, L: 1, N: 1, R: 1, S: 1, T: 1,
   D: 2, G: 2, 
@@ -63,6 +61,27 @@ const Adagrams = {
       total += 8;
     }
     return total
+  },
+  highestScoreFrom(words) {
+    let winner = {
+      word: "",
+      score: 0
+    };
+
+    let wordsAndScores = {};
+
+    words.forEach((word) => {
+      wordsAndScores[word] = this.scoreWord(word)
+    })
+
+    for (let [word, score] of Object.entries(wordsAndScores)) {
+      if (score > winner.score) {
+        winner.word = word;
+        winner.score = score;
+      }
+      
+    }
+    return winner
   }
 }
 
