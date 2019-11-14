@@ -101,6 +101,10 @@ const Adagrams = {
     }
 
     return total;
+  },
+
+  highestScoreFrom(words) {
+    
   }
 };
 
