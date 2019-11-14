@@ -1,4 +1,5 @@
-const Adagrams = {
+class Adagram {
+
   drawLetters() {
     const letterPoolObject = {
       A: 9,
@@ -49,7 +50,8 @@ const Adagrams = {
     }
 
     return lettersInHand;
-  },
+  }
+
   usesAvailableLetters(input, lettersInHand) {
     let allValid = true;
 
@@ -63,8 +65,9 @@ const Adagrams = {
     }
     
     return allValid;
-  },
-  scoreWord(word) {
+  }
+
+  static scoreWord(word) {
     const letterPointValues = {
       A: 1,
       E: 1,
@@ -107,9 +110,35 @@ const Adagrams = {
 
     return pointCount;
   }
-};
 
-//console.log(Adagrams.scoreWord("WHIMSY"))
+  highestScoreFrom(words) {
+    let highScoreWords = [];
+    let highScore = 0;
+
+    words.forEach( function(word) {
+      const currentWordScore = Adagram.scoreWord(word);
+
+      if (currentWordScore > highScore) {
+        highScoreWords = [word];
+        highScore = currentWordScore;
+      } else if (currentWordScore === highScore) {
+        highScoreWords.push(word);
+      }
+    })
+
+    if (highScoreWords.length === 1) {
+      return {word: highScoreWords[0], score: highScore}
+    } else {
+      let sortedWords = highScoreWords.sort( function(a, b){ return (b.length - a.length) })
+
+      if (sortedWords[0].length == 10){
+        return { word: sortedWords[0], score: highScore };
+      } else {
+        return { word: sortedWords[sortedWords.length - 1], score: highScore };
+      }
+    }
+  }
+}
 
 // Do not remove this line or your tests will break!
-export default Adagrams;
+export default Adagram;
