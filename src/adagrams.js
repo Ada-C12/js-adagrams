@@ -13,8 +13,7 @@ for (let letter in letterDistribution) {
   }
 }
 
-// https://css-tricks.com/snippets/javascript/shuffle-array/
-allLetters.sort(function() { return 0.5 - Math.random() });
+
 
 const scoreChart = {
   A: 1, E: 1, I: 1, O: 1, U: 1, L: 1, N: 1, R: 1, S: 1, T: 1,
@@ -28,6 +27,9 @@ const scoreChart = {
 
 const Adagrams = {
   drawLetters() {
+    // https://css-tricks.com/snippets/javascript/shuffle-array/
+    allLetters.sort(function() { return 0.5 - Math.random() });
+
     return allLetters.slice(0, 10);
   },
   usesAvailableLetters(input, lettersInHand) {
