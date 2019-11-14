@@ -6,6 +6,28 @@ const Adagrams = {
                 J: 1, W: 2, K: 1, X: 1, L: 4, Y: 2,
                 M: 2, Z: 1 },
 
+  usesAvailableLetters(word, drawn) {
+    let hand = {};
+    
+    for (const letter of drawn) {
+      if (hand[letter] == undefined) {
+        hand[letter] = 1;
+      } else {
+        hand[letter]++;
+      }
+    }
+
+    for (const letter of word) {
+      if (hand[letter] > 0) {
+        hand[letter]--;
+      } else {
+        return false;
+      }
+    }
+    
+    return true;
+  },
+
   drawLetters() {
     return Array(10).fill().map(_ => this.letters()[Math.floor(Math.random()*this.letters().length)]);
   },
