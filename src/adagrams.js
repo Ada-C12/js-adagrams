@@ -1,6 +1,6 @@
-const Adagrams = {
+class Adagrams {
   
-  drawLetters() {
+  static drawLetters() {
     const letters = { 'A': 9, 'B': 2, 'C': 2, 'D': 4, 'E': 12, 'F': 2, 'G': 3, 'H': 2, 'I': 9, 'J': 1, 'K': 1, 'L': 4, 'M': 2, 'N': 6, 'O': 8, 'P': 2, 'Q': 1, 'R': 6, 'S': 4, 'T': 6, 'U': 4, 'V': 2, 'W': 2, 'X': 1, 'Y': 2, 'Z': 1 };
     const keys = Object.keys(letters);
     const strings = new Array;
@@ -16,26 +16,24 @@ const Adagrams = {
       }
       drawOneLetter();
     }
-    console.log(`Here are the letters you have drawn: ${strings}`);
     return strings;
-  },
+  }
 
-  usesAvailableLetters(input, lettersInHand) {
+  static usesAvailableLetters(input, lettersInHand) {
     input = input.toUpperCase();
     let result = true;
     input.split("").forEach(function (letter) {
       if (lettersInHand.includes(letter) && result != false) {
         lettersInHand.splice(lettersInHand.indexOf(letter), 1)
-        // delete lettersInHand[lettersInHand.indexOf(letter)];
         result = true;
       } else {
         result = false;
       }
     });
     return result;
-  },
+  }
 
-  scoreWord(word) {
+  static scoreWord(word) {
     let points = 0;
     word = word.toUpperCase().split("")
     if (word.length >= 7) {
@@ -58,9 +56,9 @@ const Adagrams = {
       })
     })
     return points;
-  },
+  }
 
-  highestScoreFrom(words) {
+  static highestScoreFrom(words) {
     let wordsWithScores = new Object;
     for (let i = 0; i < words.length; i++) {
       wordsWithScores[words[i]] = Adagrams.scoreWord(words[i]);
@@ -80,7 +78,7 @@ const Adagrams = {
     });
     return winningWord;
   }
-};
+}
 
 // console.log(Adagrams.highestScoreFrom(["fff", "a", "ddd", "hhhhhbbba", "bbbbbbbbbb"]));
 // Do not remove this line or your tests will break!
