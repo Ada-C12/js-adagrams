@@ -115,8 +115,26 @@ const Adagrams = {
     return sum;
   },
 
+  highestScoreFrom(words) {
+    let results = { word: null, score: null, };
+    let scores = [];
+
+    scores = words.map (function(word) {
+      return Adagrams.scoreWord(word);
+    })
+
+    const max = Math.max(...scores);
+    // i got this line from stackoverflow https://stackoverflow.com/questions/11301438/return-index-of-greatest-value-in-an-array
+    const winners_indices = [...scores.keys()].filter(i => scores[i] === max);
+
+    console.log(`scores = ${scores}`);
+    
+    return results;
+  },
+
 };
 
-
+let words = ["haha", "quaz", "cat", "quiz"];
+console.log(Adagrams.highestScoreFrom(words));
 // Do not remove this line or your tests will break!
-export default Adagrams;
+// export default Adagrams;
