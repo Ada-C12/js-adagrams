@@ -159,7 +159,7 @@ const Adagrams = {
 
 };
 
-// let words = ["haha", "ahah", "quiz", "cat", "quoz"];
-// console.log(Adagrams.highestScoreFrom(words));
+let words = ["haha", "ahah", "quiz", "cat", "quoz"];
+console.log(Adagrams.highestScoreFrom(words));
 // Do not remove this line or your tests will break!
-export default Adagrams;
+// export default Adagrams;
