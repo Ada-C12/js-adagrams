@@ -86,7 +86,7 @@ const Adagrams = {
 
   highestScoreFrom(words) {
     // instantiate a topWord object w/word and score
-    let topWord = {
+    const topWord = {
       word: '',
       score: 0,
     };
@@ -94,18 +94,21 @@ const Adagrams = {
     // For each word in array, calculate score and compare to topWord.score, replace if greater.
     words.forEach((word) => {
       let wordScore = this.scoreWord(word);
-
+    
+      // if word has higher score, replace topWord
+      // if words are tied
+      // if topword is less than 10 letters 
+      //      if word has 10 letters, replace
+      //      else, take smaller word
+ 
       if (wordScore > topWord.score) {
         topWord.score = wordScore;
-        topWord.word = word
-      } else if (wordScore === topWord.score) {
-        if (word.length === topWord.word.length) {
-          return;
-        }
-        else if (word.length === 10) {
+        topWord.word = word;
+      } else if ((wordScore === topWord.score) && topWord.word.length < 10) {
+        if (word.length === 10) {
           topWord.word = word;
         } else if (word.length < topWord.word.length) {
-          topWord.word = word;
+          topWord.word = word;  
         }
       }
     });
