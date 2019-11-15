@@ -22,8 +22,6 @@ const Adagrams = {
   usesAvailableLetters(input, lettersInHand) {
     const word = input.toUpperCase().split('');
     const hand = lettersInHand;
-    console.log(hand);
-    console.log(word);
     for (let letter in word) {
       const index = hand.indexOf(word[letter]);
       if (index < 0) {
@@ -31,7 +29,6 @@ const Adagrams = {
       } else {
         delete hand[index];
       }
-      console.log(hand);
     }
     return true;
   },
@@ -55,6 +52,26 @@ const Adagrams = {
       }
     }
     return score;
+  },
+  highestScoreFrom (words) {
+    let highScore = 0;
+    let highScoreWord = ''
+    for (let word in words) {
+      let tempScore = Adagrams.scoreWord(words[word]);
+      if (tempScore > highScore) {
+        highScore = tempScore;
+        highScoreWord = words[word];
+      }
+      if (tempScore === highScore) {
+        if (words[word].length === 10 && highScoreWord.length !== 10) {
+          highScoreWord = words[word];
+        } 
+        else if (words[word].length < highScoreWord.length && highScoreWord.length !== 10) {
+          highScoreWord = words[word];
+        }
+      }
+    }
+    return {word: highScoreWord, score: highScore }
   },
 };
 
