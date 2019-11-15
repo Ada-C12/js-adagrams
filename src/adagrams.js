@@ -1,3 +1,4 @@
+import { WSAEINPROGRESS } from "constants";
 
 const letterDistribution = {
   A : 9, B : 2, C : 2, D : 4,
@@ -87,17 +88,23 @@ const Adagrams = {
   highestScoreFrom(words) {
     let maxScore = 0;
     let winWord = "";
+  // For each word find the maximum word score
     words.forEach (function(word) {
       if (Adagrams.scoreWord(word) > maxScore) {
         maxScore = Adagrams.scoreWord(word);
       }
     })
 
+  // Find all words with winning score (could be ties)
     let winningWords = words.filter((word) => Adagrams.scoreWord(word) == maxScore);
 
-    
+  
+  // If there is only 1 winner set word as winner
     if (winningWords.length < 2) {
       winWord = winningWords[0];
+    // Otherwise get the lengths of all the words
+    // If words have length 10 the first on is set as winning word
+    // If no length 10 words, find the shortest word and set winning word as first shortest
     } else {
       const lengths = winningWords.map(word => word.length);
       const tenLetters = winningWords.filter((word) => word.length === 10);
@@ -109,10 +116,10 @@ const Adagrams = {
         winWord = winningWords[0];
       }
     }
+    // Return winning word and score in object
     return { word: winWord, score: maxScore };
   },
 }
-
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
