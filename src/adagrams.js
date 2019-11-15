@@ -1,7 +1,10 @@
 // import { objectExpression } from "@babel/types";
 
-// const Adagrams = {
-  const makeLetters = () => {
+const Adagrams = {
+  // because member of Adagrams, no const like increment in arrow function example
+  //don't use arrow functions as members of objects
+  //can be inside function inside object (okay as callback function)
+  makeLetters() {
     const alphabetObject = {
       A: 9,
       B: 2,
@@ -30,7 +33,6 @@
       Y: 2,
       Z: 1,
     };
-
     const alphabetArray = [];
     for (let key in alphabetObject) {
       let i = alphabetObject[key];
@@ -42,7 +44,7 @@
   return alphabetArray;
   }
 // adapted from Fisher-Yates Shuffle
-  const shuffle = (array) => {
+  shuffle(array) {
   let currentIndex = array.length, temporaryValue, randomIndex;
   while (0 !== currentIndex) {
     randomIndex = Math.floor(Math.random() * currentIndex);
@@ -53,14 +55,13 @@
   }
   return array;
   }
-
-  const drawLetters = () => {
+  drawLetters() {
     let shuffled = shuffle(makeLetters());
     let lettersInHand = shuffled.slice(0, 10);
     return lettersInHand;
   }
 
-  const usesAvailableLetters = function(input, lettersInHand) {
+  usesAvailableLetters = function(input, lettersInHand) {
     let handCollection = {}
     lettersInHand.forEach((letter) => {
       if (handCollection[letter] == null) {
@@ -70,14 +71,15 @@
         handCollection[letter] += 1
       }
       })
-    input.toUpperCase().split('').forEach((letter) => {
+      // cannot break out of a foreach loop! use a different kind of loop
+      for(const letter in input.toUpperCase().split('')) {
       if (Object.keys(handCollection).includes(letter)) {
         handCollection[letter] -= 1;
         if (handCollection[letter] < 0) {
           return false;
         }
       }
-      else if (Object.keys(handCollection).includes(letter) ===  false) {
+      else if (!Object.keys(handCollection).includes(letter)) {
         return false;
         }
     return true
