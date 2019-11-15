@@ -117,18 +117,36 @@ const Adagrams = {
 
   highestScoreFrom(words) {
     let results = { word: null, score: null, };
-    let scores = [];
-
-    scores = words.map (function(word) {
-      return Adagrams.scoreWord(word);
-    })
-
+    
+    const scores = words.map(word => Adagrams.scoreWord(word));
     const max = Math.max(...scores);
+    results.score = max;
+
+    // what if more than 1 scored the same max?
     // i got this line from stackoverflow https://stackoverflow.com/questions/11301438/return-index-of-greatest-value-in-an-array
-    const winners_indices = [...scores.keys()].filter(i => scores[i] === max);
+    const winners_indices = [...scores.keys()].filter(index => scores[index] === max);
 
     console.log(`scores = ${scores}`);
-    
+    console.log(winners_indices);
+
+    if (winners_indices.length === 1) {
+      results.word = words[winners_indices[0]];
+    } else {
+      // hierarchy for best winner: 10-letters > shortest > earliest-index
+      let winners = winners_indices.map (index => words[index]);
+
+      let winner10Letters = winners.filter(word => word.length === 10);
+      console.log(winner10Letters);
+      
+      if (winner10Letters.length > 0 ) {
+        results.word = winner10Letters[0];
+      } else {
+        // yeah this line below doesn't work...
+        // let shortestWinners = winners.filter(word => Math.min(...word.length));
+        // results.word = shortestWinners[0];
+      }
+    }
+
     return results;
   },
 
