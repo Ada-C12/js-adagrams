@@ -82,9 +82,36 @@ const Adagrams = {
     };
 
     return score;
-  }
-}
+  },
 
+  highestScoreFrom(words) {
+    let maxScore = 0;
+    let winWord = "";
+    words.forEach (function(word) {
+      if (Adagrams.scoreWord(word) > maxScore) {
+        maxScore = Adagrams.scoreWord(word);
+      }
+    })
+
+    let winningWords = words.filter((word) => Adagrams.scoreWord(word) == maxScore);
+
+    
+    if (winningWords.length < 2) {
+      winWord = winningWords[0];
+    } else {
+      const lengths = winningWords.map(word => word.length);
+      const tenLetters = winningWords.filter((word) => word.length === 10);
+      if (tenLetters.length > 0) {
+        winWord = tenLetters[0];
+      } else {
+        const minLength = Math.min.apply(Math, lengths);
+        winningWords = words.filter((word) => word.length == minLength);
+        winWord = winningWords[0];
+      }
+    }
+    return { word: winWord, score: maxScore };
+  },
+}
 
 
 // Do not remove this line or your tests will break!
