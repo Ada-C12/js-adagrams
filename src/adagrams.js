@@ -15,12 +15,8 @@ const Adagrams = {
   scoreWord(word) {
     const scoreLetter = (letter) => this.scores[letter];
     const sum = (total, score) => total + score;
-    let score = 0;
-
-    if (word.length > 0) {
-      score += word.toUpperCase().split('')
-                   .map(scoreLetter).reduce(sum);
-    }
+    let score = word.toUpperCase().split('')
+                   .map(scoreLetter).reduce(sum, 0);
 
     if (word.length >= 7) {
       score += 8;
