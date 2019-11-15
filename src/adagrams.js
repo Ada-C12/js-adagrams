@@ -76,6 +76,11 @@ const Adagrams = {
     word.split('').forEach((letter) => {
       score += scoreTable[letter];
     });
+
+    if (word.length >= 7) {
+      score += 8;
+    }
+
     return score;
   },
 };
