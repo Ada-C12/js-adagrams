@@ -32,25 +32,57 @@ const Adagrams = {
 
   usesAvailableLetters(input, lettersInHand) { 
     let inputLength = input.length;
-    let inputUpperCase = input
 
     if(inputLength > lettersInHand.length){
       return false
     }
 
     for(let i = 0; i < inputLength; i++){
-      if (lettersInHand.indexOf(inputUpperCase[i]) !== -1){
+      if (lettersInHand.indexOf(input[i]) !== -1){
         lettersInHand = lettersInHand.toString().replace(input[i], '');
       } else {
         return false
       }
     }
     return true 
-  }
+  },
 
+    //now we wanna check every letter in the word 
+    //for a letter, look up the matching letter in the Letters object above
+    //add its value (points) to the score
   scoreWord(word) {
-    let score = 0
-  }
+    const letters = { 
+      "A": 1, "B": 3,
+      "C": 3, "D": 2, 
+      "E": 1, "F": 4,
+      "G": 2, "H": 4,
+      "I": 1, "J": 8,
+      "K": 5, "L": 1,
+      "M": 3, "N": 1,
+      "O": 1, "P": 3,
+      "Q": 10, "R": 1,
+      "S": 1, "T": 1,
+      "U": 1, "V": 4,
+      "W": 4, "X": 8,
+      "Y": 4, "Z": 10 
+    };
+
+    let score = 0;
+    
+    (word.length > 6 && word.length < 11 ? score += 8 : score += 0);
+
+    // for (const letterTile of word) {
+      //do stuff 
+    // }
+    let w = word.toUpperCase()
+    w.split('').forEach(function(letterTile){
+      score += (letters[letterTile]);
+    });
+    return score 
+  },
+
 };
+
+
 // Do not remove this line or your tests will break!
 export default Adagrams;
