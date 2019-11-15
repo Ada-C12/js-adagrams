@@ -40,7 +40,7 @@ const Adagrams = {
       }
     }
     // console.log(letterPool);
-    
+
     const randomIndices = [];
 
     while (randomIndices.length < this.drawCount) {
@@ -63,7 +63,5 @@ const Adagrams = {
   
 };
 
-Adagrams.drawLetters();
-
 // Do not remove this line or your tests will break!
-// export default Adagrams;
+export default Adagrams;
