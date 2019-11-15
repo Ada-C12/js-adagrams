@@ -37,16 +37,56 @@ const Adagrams = {
     }
     return true;
   },
+  // #Wave_3
+  scoreWord(word) {
+    if (word.length == 0) {
+      return 0;
+    }
+    const onePointLetter = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"];
+    const twoPointLetter = ["D", "G"];
+    const threePointLetter = ["B", "C", "M", "P"];
+    const fourPointLetter = ["F", "H", "V", "W", "Y"];
+    const fivePointLetter = ["K"];
+    const eightPointLetter = ["J", "X"];
+    const tenPointLetter = ["Q", "Z"];
 
+    let letters = word.toUpperCase().split('');
+    const scores = letters.map((letter) => {
+      let letterScore = 0;
+
+      if (onePointLetter.includes(letter)) {
+        letterScore += 1;
+      }
+      else if (twoPointLetter.includes(letter)) {
+        letterScore += 2;
+      }
+      else if (threePointLetter.includes(letter)) {
+        letterScore += 3;
+      }
+      else if (fourPointLetter.includes(letter)) {
+        letterScore += 4;
+      }
+      else if (fivePointLetter.includes(letter)) {
+        letterScore += 5;
+      }
+      else if (eightPointLetter.includes(letter)) {
+        letterScore += 8;
+      }
+      else if (tenPointLetter.includes(letter)) {
+        letterScore += 10;
+      }
+
+      return letterScore;
+    });
+
+
+    let totalScore = scores.reduce((total, num) => total + num);
+    if (letters.length >= 7) {
+      totalScore += 8;
+    }
+    return totalScore;
+  }
 };
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
-
-
-
-
-
-
-
-
