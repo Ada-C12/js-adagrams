@@ -24,6 +24,20 @@ const Adagrams = {
 
     return handOfLetters;
   },
+  // # wave2 code
+  usesAvailableLetters(input, lettersInHand) {
+    let userWord = input.toUpperCase();
+    for (let letter of userWord) {
+      if (lettersInHand.includes(letter)) {
+        lettersInHand.splice(lettersInHand.indexOf(letter), 1);
+      }
+      else {
+        return false;
+      }
+    }
+    return true;
+  },
+
 };
 
 // Do not remove this line or your tests will break!
