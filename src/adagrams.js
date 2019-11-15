@@ -60,8 +60,25 @@ const Adagrams = {
     return drawnLetters;
 
   },
+
+  usesAvailableLetters(input, lettersInHand) {
+    const handCopy = [...lettersInHand];
+    
+    const validInputs = input.split('').map((letter) => {
+      if (handCopy.includes(letter)) {
+        const letterIndex = handCopy.indexOf(letter);
+        handCopy.splice(letterIndex,1);
+        console.log(`handCopy: ${handCopy}`);
+        return true;
+      } else {return false;}
+    });
+
+    return validInputs.includes(false) ? false : true;
+  },
   
 };
+
+console.log(Adagrams.usesAvailableLetters('poopies', ['p','o','o','l']));
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
