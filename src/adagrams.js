@@ -65,8 +65,8 @@ const Adagrams = {
     return valid;
   },
   scoreWord(word) {
-    let score;
-    const wordArray = word.split('');
+    let score = 0;
+    const letters = word.split('');
     const wordScores = {
       'A': 1,
       'E': 1,
@@ -96,11 +96,21 @@ const Adagrams = {
       'Z': 10,
     }
     
-    // takes in a string of characters - word
-    // returns an integer with the total number of points for that word
-    // if the length of the word is 7,8,9, or 10 +8 extra points
+    letters.forEach(letter => {
+      const upperCaseLetter = letter.toUpperCase();
 
+      if (typeof wordScores[upperCaseLetter] === "number") {
+        score += wordScores[upperCaseLetter];
+      }
+    });
 
+    if (word.length >= 7 && word.length <= 10) {
+      score += 8;
+    }
+
+    
+
+    return score;
   }
 };
 
