@@ -75,11 +75,21 @@ const Adagrams = {
     })
 
     for (let [word, score] of Object.entries(wordsAndScores)) {
-      if (score > winner.score) {
+      if (score > winner.score && winner.word.length < 10) {
         winner.word = word;
         winner.score = score;
+      } else if (score === winner.score) {
+        if (winner.word.length === 10 || winner.word.length === word.length) {
+          // console.log(winner)
+          continue;
+        } else if (word.length === 10) {
+          winner.word = word;
+          winner.score = score;
+        } else if (word.length < winner.word.length){
+          winner.word = word;
+          winner.score = score;
+        }
       }
-      
     }
     return winner
   }
