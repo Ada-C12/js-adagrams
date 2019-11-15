@@ -44,6 +44,27 @@ const Adagrams = {
 
   return hand
   }, 
+  usesAvailableLetters(input, lettersInHand) {
+    lettersInHand = lettersInHand.toUpperCase();
+    
+    let handClone = lettersInHand.split("");
+    input = input.toUpperCase();
+    
+    let inputArray = input.split("");
+    let result;
+
+    inputArray.forEach(letter => {
+      if (handClone.includes(letter) == true) {
+        // delete handClone[handClone.indexOf(letter)];
+        handClone.splice(handClone.indexOf(letter),1);
+        result = true;
+      } else {
+        result = false;
+      }
+    });
+
+    return result
+  },
   
 };
 
