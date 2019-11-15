@@ -6,7 +6,7 @@ const Adagrams = {
       O: 8, P: 2, Q: 1, R: 6, S: 4, T: 6, U: 4, V: 2, W: 2, X: 1, Y: 2, Z: 1
     };
 
-  let avaLetters = [];
+    let avaLetters = [];
     for (let letter in poolOfLetter) {
       for (let i = 0; i < poolOfLetter[letter]; i++) {
         avaLetters.push(letter);
@@ -30,13 +30,13 @@ const Adagrams = {
     for (let letter of userWord) {
       if (lettersInHand.includes(letter)) {
         lettersInHand.splice(lettersInHand.indexOf(letter), 1);
-      }
-      else {
+      } else {
         return false;
       }
     }
     return true;
   },
+
   // #Wave_3
   scoreWord(word) {
     if (word.length == 0) {
@@ -56,26 +56,19 @@ const Adagrams = {
 
       if (onePointLetter.includes(letter)) {
         letterScore += 1;
-      }
-      else if (twoPointLetter.includes(letter)) {
+      } else if (twoPointLetter.includes(letter)) {
         letterScore += 2;
-      }
-      else if (threePointLetter.includes(letter)) {
+      } else if (threePointLetter.includes(letter)) {
         letterScore += 3;
-      }
-      else if (fourPointLetter.includes(letter)) {
+      } else if (fourPointLetter.includes(letter)) {
         letterScore += 4;
-      }
-      else if (fivePointLetter.includes(letter)) {
+      } else if (fivePointLetter.includes(letter)) {
         letterScore += 5;
-      }
-      else if (eightPointLetter.includes(letter)) {
+      } else if (eightPointLetter.includes(letter)) {
         letterScore += 8;
-      }
-      else if (tenPointLetter.includes(letter)) {
+      } else if (tenPointLetter.includes(letter)) {
         letterScore += 10;
       }
-
       return letterScore;
     });
 
