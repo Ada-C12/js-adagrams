@@ -116,43 +116,89 @@ const Adagrams = {
   },
 
   highestScoreFrom(words) {
-    let results = { word: null, score: null, };
-    
-    const scores = words.map(word => Adagrams.scoreWord(word));
-    const max = Math.max(...scores);
-    results.score = max;
+    let results = { };
+    // format of results will be { score1: [word1, word2]}, score2: [word3], etc }
+  
+    // take inventory of all scores from words[]
+    for (let word of words) {
+      const score = this.scoreWord(word);
 
-    // what if more than 1 scored the same max?
-    // i got this line from stackoverflow https://stackoverflow.com/questions/11301438/return-index-of-greatest-value-in-an-array
-    const winners_indices = [...scores.keys()].filter(index => scores[index] === max);
-
-    console.log(`scores = ${scores}`);
-    console.log(winners_indices);
-
-    if (winners_indices.length === 1) {
-      results.word = words[winners_indices[0]];
-    } else {
-      // hierarchy for best winner: 10-letters > shortest > earliest-index
-      let winners = winners_indices.map (index => words[index]);
-
-      let winner10Letters = winners.filter(word => word.length === 10);
-      console.log(winner10Letters);
-      
-      if (winner10Letters.length > 0 ) {
-        results.word = winner10Letters[0];
+      if (results[score]) {
+        results[score].push(word);
       } else {
-        // yeah this line below doesn't work...
-        // let shortestWinners = winners.filter(word => Math.min(...word.length));
-        // results.word = shortestWinners[0];
+        results[score] = [word];
       }
     }
 
-    return results;
+    // get the max score and get winners[]
+    const allScores = Object.keys(results);
+    max = Math.max(...allScores);
+    const winners = results[max];
+
+    // is max scored by a single word?
+    if (winners.length == 1) {
+      return results[max][0];
+    } else {
+      // apply hierarchy for best winner: 10-letters > shortest.  tie-break: earliest-index
+      winner10Letters = winners.filter( word => word.length === 10);
+      if (winner10Letters.length !== 0) {
+        return winner10Letters;
+
+      } else {
+        const lengths = winners.map( word => word.length);
+        const shortestLength = Math.min(...lengths);
+        const winner = winners.find(word => word.length === shortestLength);
+        return winner;
+      }
+    }
   },
 
 };
 
-let words = ["haha", "quaz", "cat", "quiz"];
+let words = ["haha", "ahah", "quaz", "cat", "quiz"];
 console.log(Adagrams.highestScoreFrom(words));
 // Do not remove this line or your tests will break!
 // export default Adagrams;
+
+
+
+// for safekeeping
+// highestScoreFrom(words) {
+//   let results = { word: null, score: null, };
+  
+//   // IDEA: make a hash of {word1:score1, word2:score2, etc}
+//   // then find all occurrences of max value of hash
+//   // then apply hierarchy rules to break tie
+
+
+//   const scores = words.map(word => Adagrams.scoreWord(word));
+//   const max = Math.max(...scores);
+//   results.score = max;
+
+//   // what if more than 1 scored the same max?
+//   // i got this line from stackoverflow https://stackoverflow.com/questions/11301438/return-index-of-greatest-value-in-an-array
+//   const winners_indices = [...scores.keys()].filter(index => scores[index] === max);
+
+//   // console.log(`scores = ${scores}`);
+//   // console.log(winners_indices);
+
+//   if (winners_indices.length === 1) {
+//     results.word = words[winners_indices[0]];
+//   } else {
+//     // hierarchy for best winner: 10-letters > shortest > earliest-index
+//     let winners = winners_indices.map (index => words[index]);
+
+//     let winner10Letters = winners.filter(word => word.length === 10);
+//     console.log(winner10Letters);
+    
+//     if (winner10Letters.length > 0 ) {
+//       results.word = winner10Letters[0];
+//     } else {
+//       // yeah this line below doesn't work...
+//       // let shortestWinners = winners.filter(word => Math.min(...word.length));
+//       // results.word = shortestWinners[0];
+//     }
+//   }
+
+//   return results;
+// },
