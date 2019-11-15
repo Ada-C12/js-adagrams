@@ -5,6 +5,13 @@ const Adagrams = {
 
     let playerHand = [];
 
+    for (let index = 0; index < 10; index++) {
+      // code below courtesy of https://stackoverflow.com/questions/4550505/getting-a-random-value-from-a-javascript-array
+      let randomLetter = letterPool[Math.floor(Math.random() * letterPool.length)];
+      playerHand.push(randomLetter)
+    }
+    return playerHand
+
   }
 };
 
