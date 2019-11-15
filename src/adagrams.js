@@ -53,7 +53,7 @@ const Adagrams = {
     word.forEach(function (letter) {
       Object.keys(letterValues).forEach(function (key) {
         if (letterValues[key].includes(letter)) {
-          points += parseInt(key)
+          points += parseInt(key);
         }
       })
     })
@@ -61,21 +61,27 @@ const Adagrams = {
   },
 
   highestScoreFrom(words) {
-    // pseudocode
-    // takes in 'words' which is an array of strings
-    // evaluates score of each word
-    // evaluates which word has the highest score
-      // if there is a tie,
-      // check if one word has 10 letters
-      // if so, that's the winner
-        // if there are two, the first wins
-      // if no words have 10 letters,
-        // prefer the word with fewer letters
-    // returns a hash object with the winning word & score
-    
+    let wordsWithScores = new Object;
+    for (let i = 0; i < words.length; i++) {
+      wordsWithScores[words[i]] = Adagrams.scoreWord(words[i]);
+    }
+    let winningWord = { word: null, score: null };
+
+    words.forEach(word => {
+      if (wordsWithScores[word] > winningWord.score) {
+        winningWord = { word: word, score: wordsWithScores[word] }
+      } else if (wordsWithScores[word] == winningWord.score) {
+        if (word.length == 10 && winningWord.word.length != 10) {
+          winningWord = { word: word, score: wordsWithScores[word] }
+        } else if (word.length < winningWord.word.length && winningWord.word.length != 10) {
+          winningWord = { word: word, score: wordsWithScores[word] }
+        }
+      }
+    });
+    return winningWord;
   }
 };
 
-
+// console.log(Adagrams.highestScoreFrom(["fff", "a", "ddd", "hhhhhbbba", "bbbbbbbbbb"]));
 // Do not remove this line or your tests will break!
 export default Adagrams;
