@@ -28,11 +28,16 @@ const Adagrams = {
     let i = 0;
     
     while (i < input.length) {
-      if (!lettersInHand.includes(input[i])) return false;
+      if (!lettersInHand.includes(input[i])) {
+        return false;
+      } else if (lettersInHand.includes(input[i])) {
+        let index = lettersInHand.indexOf(input[i]);
+        lettersInHand.splice(index, 1)
+      }
       i++;
     }
     
-    return true
+    return true 
 
     //return true or false
   },
