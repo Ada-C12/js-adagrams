@@ -15,34 +15,37 @@ const Adagrams = {
 
  usesAvailableLetters(input, lettersInHand) {
 
-  let included = true;
-
   for (let i = 0; i < input.length; i += 1) {
     if ( lettersInHand.includes(input[i]) === false ) {
       return false;
     }
     else {
-      lettersInHand.splice(lettersInHand.indexOf(input[i]), 1 );
+      lettersInHand.splice(lettersInHand.indexOf(input[i]), 1 )
     }
   }
 
-  return included;
+  return true;
   },
 
-  // scoreWord(word) {
-  //   let points = 0;
-  //   const pointsTable = {
-  //     'A, E, I, O, U, L, N, R, S, T' : 1,
-  //     'D, G' : 2,
-  //     'B, C, M, P' : 3,
-  //     'F, H, V, W, Y' : 4,
-  //     'K' : 5,
-  //     'J, X' : 8,
-      
-  //   };
+  scoreWord(word) {
+    let points = 0;
+    const upcaseWord = word.toUpperCase()
 
-  //   return points;
-  // },
+    if (word.length >= 7 ) { points += 8; }
+   
+    for (let i = 0; i < word.length; i += 1) 
+    {
+      if ('AEIOULNRST'.includes(upcaseWord[i])) { points += 1; }
+      else if ('DG'.includes(upcaseWord[i])) { points += 2; }
+      else if ('BCMP'.includes(upcaseWord[i])) { points += 3; }
+      else if ('FHVWY'.includes(upcaseWord[i])) { points += 4; }
+      else if ('K'.includes(upcaseWord[i])) { points += 5; }
+      else if ('JX'.includes(upcaseWord[i])) { points += 8; }
+      else { points += 0; }
+    }
+
+    return points;
+  },
 };
 
 function shuffle(array) {
