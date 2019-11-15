@@ -45,14 +45,14 @@ describe('Adagrams', () => {
     });
   });
 
-  describe.skip('scoreWord', () => {
+  describe('scoreWord', () => {
     const expectScores = (wordScores) => {
       Object.entries(wordScores).forEach(([word, score]) => {
         expect(Adagrams.scoreWord(word)).toBe(score);
       });
     };
 
-    it.skip('returns an accurate numerical score according to the score chart', () => {
+    it('returns an accurate numerical score according to the score chart', () => {
       expectScores({
         A: 1,
         DOG: 5,
@@ -60,7 +60,7 @@ describe('Adagrams', () => {
       });
     });
 
-    it.skip('returns a score regardless of the input case', () => {
+    it('returns a score regardless of the input case', () => {
       expectScores({
         a: 1,
         dog: 5,

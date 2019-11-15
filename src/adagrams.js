@@ -48,41 +48,60 @@ const Adagrams = {
     return letterPoolList;
   },
   usesAvailableLetters(word, drawn) {
-    let valid
-    const wordArray = word.split('')
+    let valid;
+    const wordArray = word.split('');
     
     for (const letter in wordArray) {
       if (drawn.includes(wordArray[letter]) === false) {
-        console.log('Kristina')
         valid = false;
         return valid;
       }
       else {
-        console.log(drawn);
         let index = drawn.indexOf(wordArray[letter]);
-        console.log( `Index ${index}: Letter ${letter}`);
         drawn.splice(index, 1);
-        // console.log(drawn);
         valid = true;
       }
     }
-
-    // wordArray.forEach(function(letter) {
-    //   if (drawn.includes(letter) === false) {
-    //     valid = false;
-    //   }
-    //   else {
-    //     let index = drawn.indexOf(letter);
-    //     console.log(index);
-    //     drawn.splice(index, 1);
-    //     console.log(drawn);
-    //     valid = true;
-    //   }
-    // });
-
     return valid;
   },
+  scoreWord(word) {
+    let score;
+    const wordArray = word.split('');
+    const wordScores = {
+      'A': 1,
+      'E': 1,
+      'I': 1,
+      'O': 1,
+      'U': 1,
+      'L': 1,
+      'N': 1,
+      'R': 1,
+      'S': 1,
+      'T': 1,
+      'D': 2,
+      'G': 2,
+      'B': 3,
+      'C': 3,
+      'M': 3,
+      'P': 3,
+      'F': 4,
+      'H': 4,
+      'V': 4,
+      'W': 4,
+      'Y': 4,
+      'K': 5,
+      'J': 8,
+      'X': 8,
+      'Q': 10,
+      'Z': 10,
+    }
+    
+    // takes in a string of characters - word
+    // returns an integer with the total number of points for that word
+    // if the length of the word is 7,8,9, or 10 +8 extra points
 
+
+  }
 };
 
 
