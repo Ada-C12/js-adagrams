@@ -1,50 +1,47 @@
-// import { objectExpression } from "@babel/types";
+import { objectExpression } from "@babel/types";
 
-const Adagrams = {
-  // because member of Adagrams, no const like increment in arrow function example
-  //don't use arrow functions as members of objects
-  //can be inside function inside object (okay as callback function)
-  makeLetters() {
-    const alphabetObject = {
-      A: 9,
-      B: 2,
-      C: 2,
-      D: 4,
-      E: 12,
-      F: 2,
-      G: 3,
-      H: 2,
-      I: 9,
-      J: 1,
-      K: 1,
-      L: 4,
-      M: 2,
-      N: 6,
-      O: 8,
-      P: 2,
-      Q: 1,
-      R: 6,
-      S: 4,
-      T: 6,
-      U: 4,
-      V: 2,
-      W: 2,
-      X: 1,
-      Y: 2,
-      Z: 1,
-    };
-    const alphabetArray = [];
-    for (let key in alphabetObject) {
-      let i = alphabetObject[key];
-      while (i > 0) {
-        alphabetArray.push(key);
-        i -= 1;
-      }
+const makeLetters = function() {
+  const alphabetObject = {
+    A: 9,
+    B: 2,
+    C: 2,
+    D: 4,
+    E: 12,
+    F: 2,
+    G: 3,
+    H: 2,
+    I: 9,
+    J: 1,
+    K: 1,
+    L: 4,
+    M: 2,
+    N: 6,
+    O: 8,
+    P: 2,
+    Q: 1,
+    R: 6,
+    S: 4,
+    T: 6,
+    U: 4,
+    V: 2,
+    W: 2,
+    X: 1,
+    Y: 2,
+    Z: 1,
+  };
+  const alphabetArray = [];
+  for (let key in alphabetObject) {
+    let i = alphabetObject[key];
+    while (i > 0) {
+      alphabetArray.push(key);
+      i -= 1;
     }
-  return alphabetArray;
   }
+return alphabetArray;
+};
+
 // adapted from Fisher-Yates Shuffle
-  shuffle(array) {
+const shuffle = function(array) {
   let currentIndex = array.length, temporaryValue, randomIndex;
   while (0 !== currentIndex) {
     randomIndex = Math.floor(Math.random() * currentIndex);
@@ -54,47 +51,74 @@ const Adagrams = {
     array[randomIndex] = temporaryValue;
   }
   return array;
-  }
+  };
+
+const Adagrams = {
+  makeLetters,
+  shuffle,
+
   drawLetters() {
-    let shuffled = shuffle(makeLetters());
+    let shuffled = this.shuffle(this.makeLetters());
     let lettersInHand = shuffled.slice(0, 10);
     return lettersInHand;
-  }
+  },
 
-  usesAvailableLetters = function(input, lettersInHand) {
+  usesAvailableLetters(input, lettersInHand) {
+    // put drawn letters into a hash-like object
     let handCollection = {}
     lettersInHand.forEach((letter) => {
       if (handCollection[letter] == null) {
-        handCollection[letter] = 1
+        handCollection[letter] = 1;
       }
       else {
-        handCollection[letter] += 1
+        handCollection[letter] += 1;
       }
-      })
-      // cannot break out of a foreach loop! use a different kind of loop
-      for(const letter in input.toUpperCase().split('')) {
-      if (Object.keys(handCollection).includes(letter)) {
-        handCollection[letter] -= 1;
-        if (handCollection[letter] < 0) {
+    })
+    // iterate through input word and check against hash-like object
+    let letterIndex = 0;
+    input = input.toUpperCase().split('')
+    while (letterIndex < input.length) {
+      if (Object.keys(handCollection).includes(input[letterIndex])) {
+        handCollection[input[letterIndex]] -= 1;
+        if (handCollection[input[letterIndex]] < 0) {
           return false;
         }
       }
-      else if (!Object.keys(handCollection).includes(letter)) {
+      else if (!Object.keys(handCollection).includes(input[letterIndex])) {
         return false;
-        }
-    return true
-    })
+      }
+    letterIndex += 1;
     }
+    return true
+  },
+
+  scoreWord(word) {
+    const scoreboard = {
+      1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
+      2: ['D', 'G'],
+      3: ['B', 'C', 'M', 'P'],
+      4: ['F', 'H', 'V', 'W', 'Y'],
+      5: ['K'],
+      8: ['J', 'X'],
+      10: ['Q', 'Z']
+    }
+    let score = 0;
+    if (word.length >= 7) {
+      score += 8;
+    };
+    word = word.toUpperCase().split('');
+    word.forEach((letter) => {
+      Object.values(scoreboard).forEach((pointValue) => {
+        if (pointValue.includes(letter)) {
+          const key = Object.keys(scoreboard).find(key => scoreboard[key] === pointValue);
+          score += key;
+        }
+      })
+    })
+  }
+}
 
 
 
-    //put all letters w count in a "hash", then check input against
-
-
-  // },
-// };
-// use THIS to call make letters once i put them both within Adagrams
-
-console.log(usesAvailableLetters('test', drawLetters()))
 // Do not remove this line or your tests will break!
-// export default Adagrams;
+export default Adagrams;
