@@ -82,8 +82,69 @@ const Adagrams = {
     }
 
     return true;
+  },
+  scoreWord(word) {
+    // build the scorechart
+    const ones = ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'];
+    const twos = ['D', 'G'];
+    const threes = ['B', 'C', 'M', 'P'];
+    const fours = ['F', 'H', 'V', 'W', 'Y'];
+    const fives = ['K'];
+    const eights = ['J', 'X'];
+    const tens = ['Q', 'Z'];
+
+    const scoreKeeping = {}
+
+    ones.forEach(function(letter) {
+      scoreKeeping[letter] = 1;
+    });
+
+    twos.forEach(function(letter) {
+      scoreKeeping[letter] = 2;
+    });
+
+    threes.forEach((letter) => {
+      scoreKeeping[letter] = 3;
+    });
+
+    fours.forEach(function(letter) {
+      scoreKeeping[letter] = 4;
+    });
+
+    fives.forEach(function(letter) {
+      scoreKeeping[letter] = 5;
+    });
+
+    eights.forEach(function(letter) {
+      scoreKeeping[letter] = 8;
+    });
+
+    tens.forEach(function(letter) {
+      scoreKeeping[letter] = 10;
+    });
+
+    let totalPoints = 0;
+
+    if (word == '') {
+      return totalPoints ;
+    }
+
+    const wordArray = word.toUpperCase().split('');
+    let i = 0
+    while (i < wordArray.length) {
+      totalPoints += scoreKeeping[wordArray[i]];
+      i++;
+    }
+
+    if (wordArray.length > 6) {
+      totalPoints += 8;
+    }
+
+    
+    return totalPoints;
   }
 };
+
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
