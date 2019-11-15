@@ -51,7 +51,6 @@ const Adagrams = {
   scoreWord(word) {
     let score = 0
   }
-
 };
 // Do not remove this line or your tests will break!
 export default Adagrams;
