@@ -1,4 +1,4 @@
-// const Adagrams = {
+const Adagrams = {
 
   const letters = {
     "A": 9,
@@ -29,7 +29,7 @@
     "Z": 1
   };
 
-  // push alphabet into array with corresponding occurrance
+  // push alphabet into array with number it is expected to occur
   let letterSet = []
   for 
   (let element in letters) {
@@ -42,13 +42,22 @@
 
 
 
-//   drawLetters() {
+  // Using Fisher-Yates/Knuth Shuffle
+  function drawLetters(array) {
+    length = array.length - 1
+    for (let i = length; i > 0; i--) {
+      const j = Math.floor(Math.random() * i);
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    };
+    return array;
+  };
 
+  let shuffledArr = drawLetters(letterSet)
+  let selectedLetters = shuffledArr.slice(0,10)
 
-
-      
-
-    // Array of all letters of the alphabet
+  
     // Draws 10 letters 
     // If the letter is drawn, the value should decrease by one
     // A letter cannot be drawn if the value is 0
@@ -56,4 +65,4 @@
 // };
 
 // Do not remove this line or your tests will break!
-// export default Adagrams;
+export default Adagrams;
