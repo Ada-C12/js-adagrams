@@ -53,35 +53,36 @@ const Adagrams = {
     };
       return hand;
     }, 
-  // usesAvailableLetters(word, drawn) {
-  
-  //   const drawnObject = {};
-  //   // build the object
-    
-  //   drawn.forEach((letter) => {
-  //     if (drawnObject[letter]) {
-  //       drawnObject[letter] += 1;
-  //     }
-  //     else {
-  //       drawnObject[letter] = 1;
-  //     }
-  //   });
-  
 
-  //   const wordArray = word.split('');
-    
-  //   for (let i = 0; i < wordArray.length; i++ ) {
-  //     let theWord = drawn[i];
-  //     if (drawnObject[drawn[i]] > 0) {
-  //     drawnObject[drawn[i]] -= 1;
-  //     }
-  //     else {
-  //       return false;
-  //     }
-  //   };
+  usesAvailableLetters(word, drawn) {
 
-  //   return true;
-  // }
+    const drawnObject = {};
+    
+    drawn.forEach((letter) => {
+      if (drawnObject[letter]) {
+        drawnObject[letter] += 1;
+      }
+      else {
+        drawnObject[letter] = 1;
+      }
+    });
+
+    const wordArray = word.split('');
+    let i = 0
+    while (i < wordArray.length) {
+      let theLetter = wordArray[i];
+    
+      if (drawnObject[theLetter] > 0) {
+      drawnObject[theLetter] -= 1;
+      }
+      else {
+        return false;
+      }
+      i++;
+    }
+
+    return true;
+  }
 };
 
 // Do not remove this line or your tests will break!
