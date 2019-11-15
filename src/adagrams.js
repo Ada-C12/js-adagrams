@@ -65,7 +65,29 @@ const Adagrams = {
 
     return result
   },
-  
+  scoreWord(word) {
+    const score_chart = { 
+    1: ["A", "E", "I", "O", "L", "N", "R", "S", "T"],
+    2: ["D", "G"],
+    3: ["B", "C", "M", "P"],
+    4: ["F", "H", "V", "W", "Y"],
+    5: ["K"],
+    8: ["J", "X"],
+    10: ["Q", "Z"]
+  }
+
+    let score_total = 0;
+    let word_array = word.toUpperCase().split("");
+
+    word_array.forEach(function (letter) {
+      Object.keys(score_chart).forEach(function (key) {
+        if (score_chart[key].includes(letter)) {
+          score_total += parseInt(key);
+        }
+      })
+    })
+      return score_total;
+  }
 };
 
 
