@@ -1,3 +1,5 @@
+import { log } from "util";
+
 const Adagrams = {
   drawLetters() {
     const letters = {
@@ -44,26 +46,26 @@ const Adagrams = {
 
   return hand
   }, 
-  usesAvailableLetters(input, lettersInHand) {
-    lettersInHand = lettersInHand.toUpperCase();
-    
-    let handClone = lettersInHand.split("");
-    input = input.toUpperCase();
-    
+  usesAvailableLetters(input, lettersInHand) {    
     let inputArray = input.split("");
     let result;
 
+    let false_check
     inputArray.forEach(letter => {
-      if (handClone.includes(letter) == true) {
-        // delete handClone[handClone.indexOf(letter)];
-        handClone.splice(handClone.indexOf(letter),1);
+      if (lettersInHand.includes(letter) == true) {
+        lettersInHand.splice(lettersInHand.indexOf(letter),1);
         result = true;
       } else {
-        result = false;
+        false_check = false;
       }
     });
 
-    return result
+    if (false_check === false) {
+      return false_check
+    } else {
+      return result
+    }
+
   },
   scoreWord(word) {
     const score_chart = { 
@@ -86,10 +88,16 @@ const Adagrams = {
         }
       })
     })
-      return score_total;
+
+    if (word.length > 6) {
+      score_total += 8
+    }
+    
+    return score_total;
   }
 };
 
+// console.log(Adagrams.usesAvailableLetters("GOOD", ['D', 'O', 'G', 'X', 'X', 'X', 'X', 'X', 'X', 'X']))
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
