@@ -1,6 +1,6 @@
-class Adagram {
+class Adagrams {
   
-  getAllLetters() {
+  static getAllLetters() {
     const lettersPool = {
       A: 9,
       B: 2,
@@ -39,7 +39,7 @@ class Adagram {
     return lettersArray
   }
   
-  drawLetters() {
+  static drawLetters() {
     // Implement this method for wave 1
     let letters = [...this.getAllLetters()]
     const myLetters = []
@@ -59,7 +59,7 @@ class Adagram {
     return myLetters
   }
   
-  usesAvailableLetters(input, lettersInhand) {
+  static usesAvailableLetters(input, lettersInhand) {
     let lettersObject = {}
     lettersInhand.forEach(function (letter) {
       if (lettersObject[letter]){
@@ -80,7 +80,7 @@ class Adagram {
     return result
   }
   
-  scoreWord(word) {
+  static scoreWord(word) {
     const lettersValue = {
       A: 1,
       B: 3,
@@ -122,7 +122,7 @@ class Adagram {
     return wordPoint
   }
   
-  highestScoreFrom(words) {
+  static highestScoreFrom(words) {
     let winningWord = { word: '', score: 0 }
     
     words.forEach(currentWord => {
@@ -147,6 +147,5 @@ class Adagram {
   }
 }
 
-const Adagrams = new Adagram
 // Do not remove this line or your tests will break!
 export default Adagrams;
