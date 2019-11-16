@@ -23,7 +23,8 @@ const Adagrams = {
       // pull a random letter from the letter pool array
       let randomLetter = letterPoolArray[Math.floor(Math.random() * letterPoolArray.length)];
       // condition: if adding the letter to the player hand would exceed the count of letters in the pool, redraw 
-      if (lettersInHand[randomLetter] == letterPoolHash[randomLetter]) {
+      let count = lettersInHand.reduce((n, x) => n + (x === randomLetter), 0);
+      if (count == letterPoolHash[randomLetter]) {
           randomLetter = letterPoolArray[Math.floor(Math.random() * letterPoolArray.length)];
         } else { // add the letter to player hand array
           lettersInHand.push(randomLetter)
