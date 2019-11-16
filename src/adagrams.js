@@ -81,7 +81,6 @@ const Adagrams = {
     if (word.length >= 7) {
       score += 8;
     }
-
     return score;
   },
 
@@ -95,13 +94,7 @@ const Adagrams = {
     // For each word in array, calculate score and compare to topWord.score, replace if greater.
     words.forEach((word) => {
       let wordScore = this.scoreWord(word);
-    
-      // if word has higher score, replace topWord
-      // if words are tied
-      // if topword is less than 10 letters 
-      //      if word has 10 letters, replace
-      //      else, take smaller word
- 
+
       if (wordScore > topWord.score) {
         topWord.score = wordScore;
         topWord.word = word;
@@ -116,8 +109,6 @@ const Adagrams = {
     return topWord;
   }
 };
-
-
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
