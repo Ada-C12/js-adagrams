@@ -9,7 +9,7 @@ const Adagrams = {
     for (let key in LETTER_POOL) {
       for (let i = 0; i < LETTER_POOL[key]; i += 1) {
         lettersArray.push(key);
-      };
+      }
     }
 
     let hand = []
@@ -21,15 +21,19 @@ const Adagrams = {
   },
 
   usesAvailableLetters(input, lettersInHand) {
-    // convert input -> array of strings
-    let inputArray  = input.split('')
-    
-    // for every letter in inputArray, check if it exists in lettersinhand, it so, delete, if it doesn't exist (null?) return false.
-    
-    // let lettersInHand = this.drawLetters()
-    // turn input into array of strings
-    // check if each letter exists as a value in lettersInHand
-    // return true or false
+    const inputArray  = input.split('')
+    const clone = lettersInHand.slice(0);
+
+    for (let i in inputArray) {      
+      if (clone.includes(inputArray[i])) {
+        let index = clone.indexOf(inputArray[i]);
+        (clone.splice(index, 1));
+      }
+      else {
+        return false;
+      }
+    }
+    return true;
   },
 
   //wave3
@@ -39,8 +43,8 @@ const Adagrams = {
   }
 };
 
-Adagrams.usesAvailableLetters('DOG', ['D', 'O', 'G', 'X', 'X', 'X', 'X', 'X', 'X', 'X'])
+// Adagrams.usesAvailableLetters('DOG', ['D', 'O', 'G', 'X', 'X', 'X', 'X', 'X', 'X', 'X'])
 
 // Do not remove this line or your tests will break!
-// export default Adagrams;
+export default Adagrams;
 

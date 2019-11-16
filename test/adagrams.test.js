@@ -24,10 +24,10 @@ describe('Adagrams', () => {
       const word = 'DOG';
 
       const isValid = Adagrams.usesAvailableLetters(word, drawn);
-      console.log('*********************');
-      console.log('word', word);
-      console.log('drawn', drawn);
-      console.log('isValid', isValid);
+      // console.log('*********************');
+      // console.log('word', word);
+      // console.log('drawn', drawn);
+      // console.log('isValid', isValid);
       
       
       
