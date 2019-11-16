@@ -1,6 +1,22 @@
+// class ClassName extends ParentClassName {
+//   constructor(attr1, attr2, etc) {
+//     super(attr1);
+//     this.attr2 = attr2;
+//     this.etc = etc;
+//   }
+
+//   instanceMethod1(args) {
+//     // do stuff;
+//   }
+
+//   static classMethod1(args) {
+//     // do stuff;
+//   }
+// }
+
 class Adagrams {
-  static frequencies() {
-    return [
+  constructor() {
+    this.frequencies = [
     ["A",9],
     ["B", 2],
     ["C", 2],
@@ -27,15 +43,24 @@ class Adagrams {
     ["X", 1],
     ["Y", 2],
     ["Z", 1],
-  ];}
+  ];
+    this.chart = [
+    [['A','E','I','O','U','L','N','R','S','T'], 1],
+    [['D','G'], 2],
+    [['B','C','M','P'], 3],
+    [['F','H','V','W','Y'], 4],
+    [['K'], 5],
+    [['J','X'], 8],
+    [['Q','Z'], 10],
+  ];
+  }
 
-  static makeNewBag() {
+  makeNewBag() {
     let bag = [];
-    const freqs = Adagrams.frequencies();
 
-    for (let i=0; i<freqs.length; i++) {
+    for (let i=0; i<this.frequencies.length; i++) {
 
-      let entry = freqs[i];
+      let entry = this.frequencies[i];
 
       for (let j=0; j<entry[1]; j++) {
         bag.push(entry[0]); 
@@ -44,7 +69,7 @@ class Adagrams {
     return bag;
   }
   
-  static drawLetters() {
+  drawLetters() {
     // draw 10 letters from newBag, return as array of 10 strings
     let newBag = this.makeNewBag();
     let tray = [];
@@ -62,13 +87,13 @@ class Adagrams {
     return tray;
   }
 
-  static remove(element, array) {
+  remove(element, array) {
     // removes a single element from array
     let garbageIndex = array.indexOf(element);
     array.splice(garbageIndex, 1);
   }
 
-  static usesAvailableLetters(inputAnyCase, lettersInHand) {
+  usesAvailableLetters(inputAnyCase, lettersInHand) {
     // input = string, supposedly made from the lettersInHand
     // lettersInHand = array of 10 single-letter strings
     // returns T if input is legit, else F
@@ -84,26 +109,14 @@ class Adagrams {
     return true;
   }
 
-  static chart() {
-    return[
-    [['A','E','I','O','U','L','N','R','S','T'], 1],
-    [['D','G'], 2],
-    [['B','C','M','P'], 3],
-    [['F','H','V','W','Y'], 4],
-    [['K'], 5],
-    [['J','X'], 8],
-    [['Q','Z'], 10],]; 
-  }
-
-  static scoreWord(wordAnyCase) {
+  scoreWord(wordAnyCase) {
     // evals word value according to chart, and returns integer of points
     let sum = 0;
     let word = wordAnyCase.toUpperCase();
-    let chart = this.chart();
 
     // assign value according to this.chart
     for (let i=0; i<word.length; i++) {
-      for (let entry of chart) {
+      for (let entry of this.chart) {
         if (entry[0].includes(word[i])) {
           sum += entry[1];
           break;
@@ -119,7 +132,7 @@ class Adagrams {
     return sum;
   }
 
-  static highestScoreFrom(words) {
+  highestScoreFrom(words) {
     // evaluate words[] and return {word: winnerWord, score: 100orSomething}
     let winner = { word: "TBD", score: "TBD" };
     let results = { };
@@ -163,7 +176,13 @@ class Adagrams {
 
 };
 
-// let words = ["haha", "ahah", "quiz", "cat", "quoz"];
-// console.log(Adagrams.highestScoreFrom(words));
+
+a1 = new Adagrams();
+console.log(a1.makeNewBag());
+console.log(a1.drawLetters());
+console.log(a1.usesAvailableLetters("hello", ['A', 'H', 'E', 'L', 'L', 'O']))
+
+let words = ["haha", "ahah", "quiz", "awesome", "quoz"];
+console.log(a1.highestScoreFrom(words));
 // Do not remove this line or your tests will break!
-export default Adagrams;
+// export default Adagrams;
