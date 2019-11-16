@@ -31,7 +31,7 @@ class Adagrams {
     };
 
     const letters = Object.keys(letterPool);
-    const lettersLength = letters.length
+    const lettersLength = letters.length;
 
     const letterInHand = [];
 
