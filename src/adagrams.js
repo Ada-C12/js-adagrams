@@ -1,5 +1,5 @@
-const Adagrams = {
-  frequencies() {
+class Adagrams {
+  static frequencies() {
     return [
     ["A",9],
     ["B", 2],
@@ -27,9 +27,9 @@ const Adagrams = {
     ["X", 1],
     ["Y", 2],
     ["Z", 1],
-  ];},
+  ];}
 
-  makeNewBag() {
+  static makeNewBag() {
     let bag = [];
     const freqs = Adagrams.frequencies();
 
@@ -42,9 +42,9 @@ const Adagrams = {
       }
     }
     return bag;
-  },
+  }
   
-  drawLetters() {
+  static drawLetters() {
     // draw 10 letters from newBag, return as array of 10 strings
     let newBag = this.makeNewBag();
     let tray = [];
@@ -60,15 +60,15 @@ const Adagrams = {
       tray.push(newBag[randomIndex]);
     }
     return tray;
-  },
+  }
 
-  remove(element, array) {
+  static remove(element, array) {
     // removes a single element from array
     let garbageIndex = array.indexOf(element);
     array.splice(garbageIndex, 1);
-  },
+  }
 
-  usesAvailableLetters(inputAnyCase, lettersInHand) {
+  static usesAvailableLetters(inputAnyCase, lettersInHand) {
     // input = string, supposedly made from the lettersInHand
     // lettersInHand = array of 10 single-letter strings
     // returns T if input is legit, else F
@@ -82,9 +82,9 @@ const Adagrams = {
       }
     }
     return true;
-  },
+  }
 
-  chart() {
+  static chart() {
     return[
     [['A','E','I','O','U','L','N','R','S','T'], 1],
     [['D','G'], 2],
@@ -93,9 +93,9 @@ const Adagrams = {
     [['K'], 5],
     [['J','X'], 8],
     [['Q','Z'], 10],]; 
-  },
+  }
 
-  scoreWord(wordAnyCase) {
+  static scoreWord(wordAnyCase) {
     // evals word value according to chart, and returns integer of points
     let sum = 0;
     let word = wordAnyCase.toUpperCase();
@@ -117,9 +117,9 @@ const Adagrams = {
     }
 
     return sum;
-  },
+  }
 
-  highestScoreFrom(words) {
+  static highestScoreFrom(words) {
     // evaluate words[] and return {word: winnerWord, score: 100orSomething}
     let winner = { word: "TBD", score: "TBD" };
     let results = { };
@@ -159,7 +159,7 @@ const Adagrams = {
       }
     }
     return winner;
-  },
+  }
 
 };
 
