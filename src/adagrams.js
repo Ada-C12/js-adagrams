@@ -30,19 +30,61 @@ const shuffleArray = function (array) {
 }
 
 // calls shuffling function
-shuffleArray(bucket)
+shuffleArray(bucket);
 
 // hand that will be populated by now shuffled bucket
-let hand = []
+let hand = [];
 
 // populates hand without destroying / altering bucket
 for (let i = 0; i < 10; i++) {
   hand.push(bucket[i])
 }
 
-const Adagrams ={
+// handyObject that will be used as a look-up-hash equivalent
+let handyObject = {}
+
+// populates handyObject using the letters from the hand that will be passed in from the user, if a letter is already there, it increments the value by 1, if it's not, it creates a new key-value pair equivalent starting with a count of 1
+const populatesHandyObj = function(hand) {
+  for(let i = 0; i < hand.length; i++){
+    if(!Object.keys(handyObject).includes(hand[i])) {
+      let key = hand[i];
+      Object.assign(handyObject, {[key]: 1});
+    }
+    else {
+      handyObject[hand[i]] += 1 
+    }
+  }
+}
+
+// iterates over the string that is passed in from the user, decrementing the values in handyObject. if it finds that a letter is missing, it returns false or if it uses more letters than were in the hand that was passed to the user. EX: [A, B, C, X, X, X, X, X, X, X] & "AAA" would return false because there's only 1 A present
+const checksInput = function(input) {
+  for(let i = 0; i < input.length; i++) {
+    if(!Object.keys(handyObject).includes(input[i])) {
+      handyObject = {}
+      return false
+    }
+    else if (handyObject[input[i]] === 0 ) {
+      handyObject = {}
+      return false
+    }
+      else {
+      handyObject[input[i]] -= 1
+    }
+  }
+  handyObject = {}
+  return true
+}
+
+// externally-accessed functions
+const Adagrams = {
+  // hand of drawn letters
   drawLetters(){
     return hand
+  },
+  usesAvailableLetters(input, lettersInHand){
+    // evaluates if hand uses only available letters
+    populatesHandyObj(lettersInHand)
+    return checksInput(input)
   },
 };
 
