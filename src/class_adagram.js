@@ -1,6 +1,6 @@
 // class ClassName extends ParentClassName {
 //   constructor(attr1, attr2, etc) {
-//     super(attr1)
+//     super(attr1);
 //     this.attr2 = attr2;
 //     this.etc = etc;
 //   }
@@ -14,8 +14,9 @@
 //   }
 // }
 
-const Adagrams = {
-  frequencies: [
+class Adagrams {
+  constructor() {
+    this.frequencies = [
     ["A",9],
     ["B", 2],
     ["C", 2],
@@ -42,7 +43,17 @@ const Adagrams = {
     ["X", 1],
     ["Y", 2],
     ["Z", 1],
-  ],
+  ];
+    this.chart = [
+    [['A','E','I','O','U','L','N','R','S','T'], 1],
+    [['D','G'], 2],
+    [['B','C','M','P'], 3],
+    [['F','H','V','W','Y'], 4],
+    [['K'], 5],
+    [['J','X'], 8],
+    [['Q','Z'], 10],
+  ];
+  }
 
   makeNewBag() {
     let bag = [];
@@ -56,7 +67,7 @@ const Adagrams = {
       }
     }
     return bag;
-  },
+  }
   
   drawLetters() {
     // draw 10 letters from newBag, return as array of 10 strings
@@ -74,13 +85,13 @@ const Adagrams = {
       tray.push(newBag[randomIndex]);
     }
     return tray;
-  },
+  }
 
   remove(element, array) {
     // removes a single element from array
     let garbageIndex = array.indexOf(element);
     array.splice(garbageIndex, 1);
-  },
+  }
 
   usesAvailableLetters(inputAnyCase, lettersInHand) {
     // input = string, supposedly made from the lettersInHand
@@ -96,17 +107,7 @@ const Adagrams = {
       }
     }
     return true;
-  },
-
-  chart: [
-    [['A','E','I','O','U','L','N','R','S','T'], 1],
-    [['D','G'], 2],
-    [['B','C','M','P'], 3],
-    [['F','H','V','W','Y'], 4],
-    [['K'], 5],
-    [['J','X'], 8],
-    [['Q','Z'], 10],
-  ],
+  }
 
   scoreWord(wordAnyCase) {
     // evals word value according to chart, and returns integer of points
@@ -129,7 +130,7 @@ const Adagrams = {
     }
 
     return sum;
-  },
+  }
 
   highestScoreFrom(words) {
     // evaluate words[] and return {word: winnerWord, score: 100orSomething}
@@ -171,11 +172,17 @@ const Adagrams = {
       }
     }
     return winner;
-  },
+  }
 
 };
 
-let words = ["haha", "ahah", "quiz", "cat", "quoz"];
-console.log(Adagrams.highestScoreFrom(words));
+
+a1 = new Adagrams();
+console.log(a1.makeNewBag());
+console.log(a1.drawLetters());
+console.log(a1.usesAvailableLetters("hello", ['A', 'H', 'E', 'L', 'L', 'O']))
+
+let words = ["haha", "ahah", "quiz", "awesome", "quoz"];
+console.log(a1.highestScoreFrom(words));
 // Do not remove this line or your tests will break!
 // export default Adagrams;
