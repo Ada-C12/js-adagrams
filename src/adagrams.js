@@ -34,8 +34,8 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
-const Adagrams = {
-  drawLetters() {
+class Adagrams {
+  static drawLetters() {
     let letterArray = createLetterArray()
     let drawnHand = []
     for(let i = 0; i < 10; i++) {   
@@ -44,9 +44,9 @@ const Adagrams = {
       letterArray.splice(randomIndex , 1);
     }
     return drawnHand
-  },
+  }
   
-  usesAvailableLetters(word, drawn) {
+  static usesAvailableLetters(word, drawn) {
     if (word.length > drawn.length) {
       return false
     };
@@ -68,9 +68,9 @@ const Adagrams = {
       }
     }
     return true;
-  },
+  }
 
-  scoreWord(word) {
+  static scoreWord(word) {
     let cleaned_word = word.toUpperCase();
     let score = 0;
 
@@ -83,9 +83,9 @@ const Adagrams = {
     };
 
     return score;
-  },
+  }
 
-  highestScoreFrom(words) {
+  static highestScoreFrom(words) {
     let maxScore = 0;
     let winWord = "";
   // For each word find the maximum word score
@@ -118,8 +118,9 @@ const Adagrams = {
     }
     // Return winning word and score in object
     return { word: winWord, score: maxScore };
-  },
+  }
 }
+
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
