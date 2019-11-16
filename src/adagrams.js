@@ -113,6 +113,10 @@ const Adagrams = {
       };
     });
 
+    if (wordDowncase.length >= 7) {
+      wordScore += 8;
+    }
+
     return wordScore
 
 
