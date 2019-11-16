@@ -50,50 +50,34 @@ const Adagrams = {
   },
 
 scoreWord(word){
-//create score Object to hold score
-//for letter in word go to letterScores object and its value.
-//Once you get the value add it to totalscore
-//once you are done go out of loop and return score.
-const letterScores = {'A': 1, 'B': 3, 'C': 3, 'D':2, 'E':1, 'F': 4, 'G':2, 'H':4, 'I': 1, 'J': 8, 'K':5, 'L':1, 
-'M':3, 'N': 1, 'O':1, 'P':3, 'Q': 10, 'R': 1, 'S': 1, 'T': 1, 'U': 1, 'V' : 4, 'W' :4, 
-'X': 8, 'Y': 4, 'Z': 10 };
-
-if (word === ""){
-  return 0;
-}
-let totalScore = 0;
-
-for (let i = 0; i < word.length; i++) {
-  let letter = word[i].toUpperCase();
-   totalScore += letterScores[letter];
-   };
-   return parseInt(totalScore); 
-
-
-//iterate through the word and check each letters score in score word hash,
-//if the word letter is in object then add the value to the score variable
-//then check the length of each of the  
-
-},
-
-
-
-
-
-
-
-
-
+  if (word === ""){
+    return 0;
+  }
+  const letterScores = {'A': 1, 'B': 3, 'C': 3, 'D':2, 'E':1, 'F': 4, 'G':2, 'H':4, 'I': 1, 'J': 8, 'K':5, 'L':1, 
+  'M':3, 'N': 1, 'O':1, 'P':3, 'Q': 10, 'R': 1, 'S': 1, 'T': 1, 'U': 1, 'V' : 4, 'W' :4, 
+  'X': 8, 'Y': 4, 'Z': 10 };
+  
+  const extraPoints = [7, 8, 9, 10];
+    let totalScore = 0;
+    let input = word.length;
+    
+    extraPoints.forEach(element => {
+      if (input === element){
+        totalScore += 8;
+      }
+    });
+    for (let i = 0; i < word.length; i++) {
+      let letter = word[i].toUpperCase();
+      totalScore += letterScores[letter];
+      };
+      return parseInt(totalScore); 
+  },
 };
 
 // Object.keys(LETTER_POOL).forEach(function(key){
 //   for(let i = 0; i < LETTER_POOL[key]; i += 1){
 //     letters.push(key);
 //   }
-
-
-
-
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
