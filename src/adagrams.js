@@ -1,18 +1,24 @@
 const Adagrams = {
   drawLetters() {
     // Implement this method for wave 1
-    const letterPool = ['A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'D', 'D', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'F', 'F', 'G', 'G', 'G', 'H', 'H', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'J', 'K', 'L', 'L', 'L', 'L', 'M', 'M',  'N', 'N', 'N', 'N', 'N', 'N', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'P', 'P', 'Q', 'R', 'R', 'R', 'R', 'R', 'R', 'S', 'S', 'S', 'S', 'T', 'T', 'T', 'T', 'T', 'T', 'U', 'U', 'U', 'U', 'V', 'V', 'W', 'W', 'X', 'Y', 'Y', 'Z'];
+    const letterPool = {'A':9, 'B':2, 'C':2, 'D':4, 'E':12, 'F':2, 'G':3, 'H':2, 'I':9, 'J':1, 'K':1, 'L':4, 'N':6, 'O':8, 'P':2, 'Q':1, 'R':6, 'S':4, 'T':6,'U':4, 'V':2, 'W':2, 'X':1, 'Y':2, 'Z':1 }
 
-    let playerHand = [];
+    
 
+    let lettersInHand = [];
+
+    // add logic for re-drawing a letter if total count of letters in pool have already been drawn
+    
     for (let index = 0; index < 10; index++) {
       // code below courtesy of https://stackoverflow.com/questions/4550505/getting-a-random-value-from-a-javascript-array
       let randomLetter = letterPool[Math.floor(Math.random() * letterPool.length)];
-      playerHand.push(randomLetter)
+      lettersInHand.push(randomLetter)
     }
     return playerHand
-
   }
+
+  usesAvailableLetters(input, lettersInHand)
+
 };
 
 // Do not remove this line or your tests will break!
