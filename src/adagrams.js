@@ -18,6 +18,20 @@ const Adagrams = {
     return letterHand 
   },
 
+  usesAvailableLetters(input, lettersInHand) {
+    const lettersInHandCopy = Array.from(lettersInHand);
+    const inputArray = input.split('');
+    let validHand = true
+    inputArray.forEach( function(char) {
+      if (lettersInHandCopy.includes(char)) {
+        lettersInHandCopy.splice(lettersInHandCopy.indexOf(char), 1)
+      }
+      else { validHand = false; 
+      }  
+    });
+  return validHand
+  }
+
   
 };
 
