@@ -15,6 +15,28 @@ const Adagrams = {
 
     return allLetters.slice(0, 10);
   },
+  usesAvailableLetters(input, lettersInHand) {
+    // const lettersInHand = lettersInHand;
+    // const input = input;
+    let lettersInHandHash = {};
+
+    lettersInHand.forEach( function(letter) {
+      if (lettersInHandHash[letter]) {
+        lettersInHandHash[letter] += 1;
+      } else {
+        lettersInHandHash[letter] = 1; 
+      }
+    });
+
+    for (let i = 0; i < input.length; i += 1) {
+      if (lettersInHandHash[input[i]] === undefined || lettersInHandHash[input[i]] < 1) { 
+        return false;
+      } else {
+        lettersInHandHash[input[i]] -= 1;
+      }
+    }
+    return true;
+  },
 };
 
 // Do not remove this line or your tests will break!
