@@ -1,3 +1,5 @@
+import { Binding } from "@babel/traverse";
+
 const Adagrams = {
   drawLetters() {
     // Implement this method for wave 1
@@ -81,6 +83,35 @@ const Adagrams = {
     }
 
     return score;
+  },
+  
+  highestScoreFrom (words) {
+    let highestScore = {
+      word: words[0],
+      score: this.scoreWord(words[0]),
+    };
+
+    for (let i = 1; i < words.length; i++) {
+      let currentWord = words[i];
+      let currentScore = this.scoreWord(words[i])
+
+      if (currentScore > highestScore.score) {
+        highestScore.word = currentWord;
+        highestScore.score = currentScore;
+      } else if (currentScore === highestScore.score) {
+        let highestScoreLength = highestScore.word.length
+
+        if (currentWord.length < highestScoreLength && highestScoreLength !== 10) {
+          highestScore.word = currentWord;
+          highestScore.score = currentScore;
+        } else if (currentWord.length === 10 && highestScoreLength !== 10) {
+          highestScore.word = currentWord;
+          highestScore.score = currentScore;
+        }
+      }
+    }
+
+    return highestScore;
   },
 
 };
