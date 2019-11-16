@@ -1,21 +1,6 @@
-// class ClassName extends ParentClassName {
-//   constructor(attr1, attr2, etc) {
-//     super(attr1)
-//     this.attr2 = attr2;
-//     this.etc = etc;
-//   }
-
-//   instanceMethod1(args) {
-//     // do stuff;
-//   }
-
-//   static classMethod1(args) {
-//     // do stuff;
-//   }
-// }
-
 const Adagrams = {
-  frequencies: [
+  frequencies() {
+    return [
     ["A",9],
     ["B", 2],
     ["C", 2],
@@ -42,14 +27,15 @@ const Adagrams = {
     ["X", 1],
     ["Y", 2],
     ["Z", 1],
-  ],
+  ];},
 
   makeNewBag() {
     let bag = [];
+    const freqs = Adagrams.frequencies();
 
-    for (let i=0; i<this.frequencies.length; i++) {
+    for (let i=0; i<freqs.length; i++) {
 
-      let entry = this.frequencies[i];
+      let entry = freqs[i];
 
       for (let j=0; j<entry[1]; j++) {
         bag.push(entry[0]); 
@@ -98,24 +84,26 @@ const Adagrams = {
     return true;
   },
 
-  chart: [
+  chart() {
+    return[
     [['A','E','I','O','U','L','N','R','S','T'], 1],
     [['D','G'], 2],
     [['B','C','M','P'], 3],
     [['F','H','V','W','Y'], 4],
     [['K'], 5],
     [['J','X'], 8],
-    [['Q','Z'], 10],
-  ],
+    [['Q','Z'], 10],]; 
+  },
 
   scoreWord(wordAnyCase) {
     // evals word value according to chart, and returns integer of points
     let sum = 0;
     let word = wordAnyCase.toUpperCase();
+    let chart = this.chart();
 
     // assign value according to this.chart
     for (let i=0; i<word.length; i++) {
-      for (let entry of this.chart) {
+      for (let entry of chart) {
         if (entry[0].includes(word[i])) {
           sum += entry[1];
           break;
@@ -175,7 +163,7 @@ const Adagrams = {
 
 };
 
-let words = ["haha", "ahah", "quiz", "cat", "quoz"];
-console.log(Adagrams.highestScoreFrom(words));
+// let words = ["haha", "ahah", "quiz", "cat", "quoz"];
+// console.log(Adagrams.highestScoreFrom(words));
 // Do not remove this line or your tests will break!
-// export default Adagrams;
+export default Adagrams;
