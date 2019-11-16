@@ -33,13 +33,13 @@ class Adagrams {
     const letters = Object.keys(letterPool);
     const lettersLength = letters.length
 
-    const letterBank = [];
+    const letterInHand = [];
 
     for (let i = 0; i < 10; i += 1) {
-      letterBank.push(letters[Math.floor(Math.random() * lettersLength)]);
+      letterInHand.push(letters[Math.floor(Math.random() * lettersLength)]);
     }
 
-    return letterBank;
+    return letterInHand;
     
   }
 
