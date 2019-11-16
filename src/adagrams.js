@@ -19,7 +19,6 @@ const Adagrams = {
 
   usesAvailableLetters(input, lettersInHand) {
     let lettersObject = {};
-    let outcome = true;
 
     // Put lettersIn Hand into a hash-like object
     lettersInHand.forEach((letter) => {
@@ -31,15 +30,17 @@ const Adagrams = {
     });
 
     // Put input into an array and compare each element to hash-like object
-    input.split('').forEach((item) => {
-      if (lettersObject.hasOwnProperty(item) && lettersObject[item] > 0) {
-        lettersObject[item] -= 1;
+    let i = 0
+    while (i < input.length) {
+      if (lettersObject.hasOwnProperty(input[i]) && lettersObject[input[i]] > 0) {
+        lettersObject[input[i]] -= 1;
+        i += 1
       } else {
-        outcome = false;
-      }
-    });
-    return outcome;
-  },
+          return false;
+        }
+    }
+    return true;
+   },
 
   scoreWord(word) {
     word = word.toUpperCase();
