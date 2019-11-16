@@ -46,6 +46,24 @@ const Adagrams = {
 
     return points;
   },
+
+  highestScoreFrom(words)  {
+
+    let max = 0
+    let scores = [];
+
+    for ( let i = 0; i < words.length; i += 1 ) {
+      let score = Adagrams.scoreWord(words[i])
+      scores.push(score)
+      if ( max < score ) { max = score; }
+    }
+
+    let indexMax = scores.indexOf(max);
+    
+    const correct = { word: words[indexMax], score: max };
+    
+  return correct;
+  },
 };
 
 function shuffle(array) {
@@ -61,7 +79,11 @@ function shuffle(array) {
   }
 }
 
+
+
+// console.log(Adagrams.highestScoreFrom(words));
 // console.log(Adagrams.drawLetters());
+
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
