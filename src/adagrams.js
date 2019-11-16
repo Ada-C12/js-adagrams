@@ -31,12 +31,13 @@ const Adagrams = {
         }
       }
     return lettersInHand
-  }
+  },
   
-
-  usesAvailableLetters(input, lettersInHand)
-  // turn letters in Hand to a hash map that we can compare to input
-  handHash = {}
+  usesAvailableLetters(input, lettersInHand) {
+    
+    // turn hand array into a hash map that we can compare to input
+    let handHash = {};
+  
   lettersInHand.forEach(letter => {
     if (handHash[letter] == null) {
       handHash[letter] = 1
@@ -44,7 +45,27 @@ const Adagrams = {
       handHash[letter] += 1
     }
   });
-};
+
+    let inputArray = input.toUpperCase().split('')
+    
+    // remove input letters from handHash. If letter is not in hash, return false.
+  inputArray.forEach(letter => {
+    if (handHash[letter] == null) {
+      return false;
+    } else {
+      handHash[letter] -= 1;
+    }
+    });
+
+  // loop over handHash: if letter count in input is ever greater than letter count in hash, return false. Else return true. 
+      for (let index = 0; index < inputArray.length; index++) {
+        if (handHash[inputArray[index]] < 0 || handHash[inputArray[index]] == null) {
+          return false;
+        }
+        }
+        return true;
+    }
+  }
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
