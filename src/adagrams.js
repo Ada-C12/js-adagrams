@@ -15,7 +15,7 @@ const Adagrams = {
 
     let lettersInHand = [];
     
-    // turn draw letter into an anonymous function? or a helper function?
+    // turn draw random letter into an anonymous function? or a helper function?
     
     // continue this loop until there are ten letters in the player hand 
     for (let index = 0; lettersInHand.length < 10; index++) {
@@ -23,7 +23,7 @@ const Adagrams = {
       // pull a random letter from the letter pool array
       let randomLetter = letterPoolArray[Math.floor(Math.random() * letterPoolArray.length)];
       // condition: if adding the letter to the player hand would exceed the count of letters in the pool, redraw 
-      let count = lettersInHand.reduce((n, x) => n + (x === randomLetter), 0);
+      let count = lettersInHand.reduce((total, letter) => total + (letter === randomLetter), 0);
       if (count == letterPoolHash[randomLetter]) {
           randomLetter = letterPoolArray[Math.floor(Math.random() * letterPoolArray.length)];
         } else { // add the letter to player hand array
@@ -34,8 +34,16 @@ const Adagrams = {
   }
   
 
-  // usesAvailableLetters(input, lettersInHand)
-
+  usesAvailableLetters(input, lettersInHand)
+  // turn letters in Hand to a hash map that we can compare to input
+  handHash = {}
+  lettersInHand.forEach(letter => {
+    if (handHash[letter] == null) {
+      handHash[letter] = 1
+    } else {
+      handHash[letter] += 1
+    }
+  });
 };
 
 // Do not remove this line or your tests will break!
