@@ -51,6 +51,15 @@ class Adagrams {
     return indices;
   }
 
+  static findIndex(array, element) {
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] === element) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
   static drawLetters() {
     const numberOfLetters = 10;
     const letterPool = Adagrams.generatePool();
@@ -64,6 +73,23 @@ class Adagrams {
     return letters;
   }
 
+  static usesAvailableLetters(input, lettersInHand) {
+    const inputLength = input.length;
+    const handCount = lettersInHand.length;
+    if (inputLength > handCount) {
+      return false;
+    } else {
+      for (let i = 0; i < inputLength; i++) {
+        const index = Adagrams.findIndex(lettersInHand, input[i]);
+        if (index === -1) {
+          return false;
+        } else {
+          lettersInHand.splice(index, 1);
+        }
+      }
+    }
+    return true;
+  }
 }
 
 export default Adagrams;
