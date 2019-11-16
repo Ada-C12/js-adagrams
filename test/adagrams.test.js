@@ -24,6 +24,7 @@ describe('Adagrams', () => {
       const word = 'DOG';
 
       const isValid = Adagrams.usesAvailableLetters(word, drawn);
+
       expect(isValid).toBe(true);
     });
 
