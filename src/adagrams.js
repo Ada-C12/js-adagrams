@@ -31,8 +31,6 @@ const Adagrams = {
   let objHand = {};
 
   for (let letter of lettersHand) {
-    console.log(objHand[letter]);
-    
     if (objHand[letter]) {
       objHand[letter] += 1;
     } else {
@@ -60,16 +58,17 @@ const letterScores = {'A': 1, 'B': 3, 'C': 3, 'D':2, 'E':1, 'F': 4, 'G':2, 'H':4
 'M':3, 'N': 1, 'O':1, 'P':3, 'Q': 10, 'R': 1, 'S': 1, 'T': 1, 'U': 1, 'V' : 4, 'W' :4, 
 'X': 8, 'Y': 4, 'Z': 10 };
 
+if (word === ""){
+  return 0;
+}
 let totalScore = 0;
 
 for (let i = 0; i < word.length; i++) {
-  let letter = word[i];
-  if (letterScores[letter]){
-    totalScore += letterScores[letter];
-   }
-   console.log(totalScore)
+  let letter = word[i].toUpperCase();
+   totalScore += letterScores[letter];
+   };
    return parseInt(totalScore); 
-}
+
 
 //iterate through the word and check each letters score in score word hash,
 //if the word letter is in object then add the value to the score variable
