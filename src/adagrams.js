@@ -51,18 +51,32 @@ const Adagrams = {
 
     let max = 0
     let scores = [];
+    let lengths = [];
+    let maxIndices = [];
 
     for ( let i = 0; i < words.length; i += 1 ) {
-      let score = Adagrams.scoreWord(words[i])
-      scores.push(score)
-      if ( max < score ) { max = score; }
+      let score = Adagrams.scoreWord(words[i]);
+      scores.push(score);
+      if ( max < score ) { max = score; } 
     }
 
-    let indexMax = scores.indexOf(max);
+    for ( let i = 0; i < scores.length; i += 1 ) {
+      if ( max === scores[i] ) { maxIndices.push(i); let length = words[i].length; lengths.push(length); }
+    }
+
+    let minLength = lengths[0];
+
+    for ( let i = 0; i < lengths.length; i += 1 ) {
+      if ( minLength > lengths[i] ) { minLength = lengths[i]; }
+    }
     
-    const correct = { word: words[indexMax], score: max };
+    let indexWinner;
+    let winner;
+    if (lengths.includes(10) === true) { indexWinner = lengths.indexOf(10); winner =  maxIndices[indexWinner]; }
+    else { indexWinner = lengths.indexOf(minLength); winner = maxIndices[indexWinner]; }
     
-  return correct;
+    const correct = { word: words[winner], score: max };
+    return correct;
   },
 };
 
