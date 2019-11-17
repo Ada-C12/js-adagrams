@@ -69,12 +69,8 @@ const Adagrams = {
     return true;
   },
 
-
- 
-
-
   scoreWord(word) {
-    let string = word.toUpperCase()
+    let string = word.toUpperCase();
     const pointSystem = {
       1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
       2: ["D", "G"],
