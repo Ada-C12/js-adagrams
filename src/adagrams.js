@@ -29,16 +29,47 @@ const pool = Array(9).fill('A').concat(
 let POOL = pool;
 
 const Adagrams = {
+
   drawLetters() {
     let i = 0;
     const lettersInHand = new Array(10);
     while (i < 10) {
       lettersInHand[i] = POOL[Math.floor(Math.random() * POOL.length)];
       i += 1;
-    };
-    return lettersInHand
+    }
+    return lettersInHand;
   },
-};
+
+  usesAvailableLetters(input, lettersInHand) {
+    const lettersObj = new Object();
+    lettersInHand.forEach(function(element){
+      if (lettersObj[element]) {
+        lettersObj[element] += 1;
+      } else {
+        lettersObj[element] = 1;
+      }
+    });
+
+    let j = 0;
+    while (j < input.length) {
+      if (lettersObj[input.charAt(j)]) {
+        lettersObj[input.charAt(j)] -= 1;
+      } else {
+        return false;
+      }
+      j += 1;
+    }
+
+    let n = 0;
+    while (n < lettersObj.length) {
+      if (lettersObj[j] < 0) {
+        return false;
+      }
+      n += 1; 
+    }
+    return true
+  },
+}
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
