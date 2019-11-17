@@ -29,7 +29,7 @@ const Adagrams = {
       }
     });
 
-    // Put input into an array and compare each element to hash-like object
+    // Index through each letter and compare to hash-like object
     let i = 0
     while (i < input.length) {
       if (lettersObject.hasOwnProperty(input[i]) && lettersObject[input[i]] > 0) {
