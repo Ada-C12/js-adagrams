@@ -136,27 +136,16 @@ const Adagrams = {
 
   scoreWord,
 
-  winnerAmongWinners(wordsList) {
-    if (wordsList.length === 1) {
-    return wordsList;
-    };
-    if (Object.entries(wordsList).filter(([key, value]) => key.length === 10).length === 1) {
-      return wordsList;
-    }
-  },
-
   highestScoreFrom(words) {
-    let wordCollection = {};
+    let wordCollection = [];
     let maxPoints = 0;
     words.forEach((word) => {
       let score = this.scoreWord(word);
-      wordCollection[word] = score;
+      wordCollection.push({word: word, score: score});
       if (score > maxPoints) {
        maxPoints = score;
       };
     })
-    const winningWords = Object.entries(wordCollection).filter(([key, value]) => value === maxPoints)
-    this.winnerAmongWinners(winningWords);
   },
 }
 
