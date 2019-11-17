@@ -60,6 +60,43 @@ class Adagrams {
     return -1;
   }
 
+  static wordToScore(word) {
+    const wordScore = {
+      A: 1,
+      E: 1,
+      I: 1,
+      O: 1,
+      U: 1,
+      L: 1,
+      N: 1,
+      R: 1,
+      S: 1,
+      T: 1,
+      D: 2,
+      G: 2,
+      B: 3,
+      C: 3,
+      M: 3,
+      P: 3,
+      F: 4,
+      H: 4,
+      V: 4,
+      W: 4,
+      Y: 4,
+      K: 5,
+      J: 8,
+      X: 8,
+      Q: 10,
+      Z: 10,
+    }
+    let score = 0;
+    const size = word.length;
+    for (let i = 0; i < size; i++) {
+      score += wordScore[word[i].toUpperCase()];
+    }
+    return score;
+  }
+
   static drawLetters() {
     const numberOfLetters = 10;
     const letterPool = Adagrams.generatePool();
@@ -91,46 +128,34 @@ class Adagrams {
     return true;
   }
 
-  static wordToScore(word){
-    const wordScore = {
-      A: 1,
-      E: 1,
-      I: 1,
-      O: 1,
-      U: 1,
-      L: 1,
-      N: 1,
-      R: 1,
-      S: 1,
-      T: 1,
-      D: 2,
-      G: 2,
-      B: 3,
-      C: 3,
-      M: 3, 
-      P: 3,
-      F: 4,
-      H: 4, 
-      V: 4, 
-      W: 4, 
-      Y: 4,
-      K: 5,
-      J: 8, 
-      X: 8,
-      Q: 10, 
-      Z: 10,
-    }
-    let score = 0;
-    const size = word.length;
-    for(let i = 0; i < size; i++){
-      score += wordScore[word[i].toUpperCase()];
-    }
-    return score;
+  static scoreWord(word) {
+    const score = (word.length > 6) ? 8 : 0;
+    return score + Adagrams.wordToScore(word);
   }
 
-  static scoreWord(word) {
-    let score = (word.length > 6) ? 8 : 0;
-    return score + Adagrams.wordToScore(word);
+  static highestScoreFrom(words) {
+    const length = words.length;
+    let highestScore = 0;
+    let bestWord = '';
+
+    for (let i = 0; i < length; i++) {
+      const currentWord = words[i];
+      const currentScore = Adagrams.scoreWord(words[i]);
+
+      if (currentScore > highestScore) {
+        bestWord = currentWord;
+        highestScore = currentScore;
+      } else if ((currentScore === highestScore) &&
+        (bestWord.length < 10) &&
+        ((currentWord.length === 10) || (currentWord.length < bestWord.length))) {
+        // in case of tie and bestWord length is not 10, 
+        // replace bestWord with currentWord if currentWord length is 10 
+        // or currentWord is shorter than bestWord
+        bestWord = currentWord;
+      }
+    }
+
+    return { "word": bestWord, "score": highestScore };
   }
 }
 
