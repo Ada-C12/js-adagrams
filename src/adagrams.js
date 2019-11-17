@@ -29,7 +29,6 @@ const Adagrams = {
     "Z": 1
   },
 
-  // push alphabet into array with number it is expected to occur
  
 // Use Fisher-Yates/Knuth Shuffle
   shuffler(array) {
@@ -43,7 +42,6 @@ const Adagrams = {
     return array;
   },
 
-  
   drawLetters() {
     let letters = this.letters;
     const letterSet = [];
@@ -69,6 +67,42 @@ const Adagrams = {
       }
     } 
     return true;
+  },
+
+
+ 
+
+
+  scoreWord(word) {
+    word.toUpperCase()
+    const pointSystem = {
+      1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
+      2: ["D", "G"],
+      3: ["B", "C", "M", "P"],
+      4: ["F", "H", "V", "W", "Y"],
+      5: ["K"],
+      6: ["J", "X"],
+      7: ["Q", "Z"]
+    }
+
+    let points = 0;
+    let length = word.length;
+    if (length >= 7 && length <= 10) { points += 8 }; 
+    for (let letter of word) {
+    
+      let elementScore =
+      (pointSystem[1].includes(letter)) ? 1    
+      :(pointSystem[2].includes(letter)) ? 2
+      :(pointSystem[3].includes(letter)) ? 3 
+      :(pointSystem[4].includes(letter)) ? 4 
+      :(pointSystem[5].includes(letter)) ? 5 
+      :(pointSystem[6].includes(letter)) ? 8 
+      :(pointSystem[7].includes(letter)) ? 10
+      :points = 0
+
+      points += elementScore
+    }
+    return points;
   }
   
 }
