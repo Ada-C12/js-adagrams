@@ -4,17 +4,13 @@ const alphaRef = { a: 9, b: 2, c: 2, d: 4, e: 12, f: 2, g: 3, h: 2, i: 9, j: 1, 
 // initially empty bucket
 let bucket = [];
 
-// teeny function to populate the bucket upon being passed in a letter
-const letterPusher = (letter) => {bucket.push(letter)}
-
-// iterates over array, defining the letter and value. Based on the value, it repeats letterPusher function for the letter
+// iterates over array, defining the letter and value. It then pushes the letter into the bucket array according to the value
 for ( const character in alphaRef ) {
   let value = alphaRef[character]
   let letter = character
   let i = 0
   while (i < value) {
-    // letter.toUpperCase()
-    letterPusher(letter.toUpperCase())
+    bucket.push(letter.toUpperCase())
     i++
   };
 }
@@ -40,11 +36,11 @@ for (let i = 0; i < 10; i++) {
   hand.push(bucket[i])
 }
 
-// handyObject that will be used as a look-up-hash equivalent
-let handyObject = {}
+//creates object (handyObject) that will be used as a lookup hash equivalent with the values being the number of occurences for a sinle letter. Once populated, it iterates over the input, decrementing the values 
+const validityOfHand = function(input, hand) {
 
-// populates handyObject using the letters from the hand that will be passed in from the user, if a letter is already there, it increments the value by 1, if it's not, it creates a new key-value pair equivalent starting with a count of 1
-const populatesHandyObj = function(hand) {
+  let handyObject = {}
+
   for(let i = 0; i < hand.length; i++){
     if(!Object.keys(handyObject).includes(hand[i])) {
       let key = hand[i];
@@ -54,26 +50,22 @@ const populatesHandyObj = function(hand) {
       handyObject[hand[i]] += 1 
     }
   }
-}
 
-// iterates over the string that is passed in from the user, decrementing the values in handyObject. if it finds that a letter is missing, it returns false or if it uses more letters than were in the hand that was passed to the user. EX: [A, B, C, X, X, X, X, X, X, X] & "AAA" would return false because there's only 1 A present
-const checksInput = function(input) {
   for(let i = 0; i < input.length; i++) {
     if(!Object.keys(handyObject).includes(input[i])) {
-      handyObject = {}
       return false
     }
     else if (handyObject[input[i]] === 0 ) {
-      handyObject = {}
       return false
     }
       else {
       handyObject[input[i]] -= 1
     }
   }
-  handyObject = {}
   return true
 }
+
+// iterates over the string that is passed in from the user, decrementing the values in handyObject. if it finds that a letter is missing, it returns false or if it uses more letters than were in the hand that was passed to the user. EX: [A, B, C, X, X, X, X, X, X, X] & "AAA" would return false because there's only 1 A present
 
 // point reference by letter
 const pointRef = { A: 1, B: 3, C: 3, D: 2, E: 1, F: 4, G: 2, H: 4, I: 1, J: 8, K: 5, L: 1, M: 3, N: 1, O: 1, P: 3, Q: 10, R: 1, S: 1, T: 1, U: 1, V: 4, W: 4, X: 8, Y: 4, Z: 10, }
@@ -95,7 +87,6 @@ const score = function(word) {
   }
 }
 
-
 // externally-accessed functions
 const Adagrams = {
   // hand of drawn letters
@@ -104,8 +95,7 @@ const Adagrams = {
   },
   usesAvailableLetters(input, lettersInHand){
     // evaluates if hand uses only available letters
-    populatesHandyObj(lettersInHand)
-    return checksInput(input)
+    return validityOfHand(input, lettersInHand)
   },
   scoreWord(word){
     return score(word)
