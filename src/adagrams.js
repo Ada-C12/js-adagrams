@@ -38,15 +38,31 @@ const Adagrams = {
     }
       return points;
   },
+
+  highestScoreFrom(words) {
+    let scores = [];
+
+    //Loops through the array of words and calling the method scoreWords to get the scores
+    for (let i = 0; i < (words.length); i++) {
+      scores.push(Adagrams.scoreWord(words[i]));
+    }
+
+    // The Math.max.apply(null, array) finds the max value on the array scores
+    // The function indexOf finds the value for the index with the max value
+    let correct = { word: words[scores.indexOf(Math.max.apply(null, scores))], score: Math.max.apply(null, scores) };
+
+    // Still need to work on the tie-breaking rules for Wave 4:
+    return correct;
+  },
 };
 
-// console.log(Adagrams.drawLetters());
 
+// I ran each function bewlow and tested also on the console to troubleshoot failing tests etc.
+// console.log(Adagrams.highestScoreFrom(["APPLE", "BLUE", "PIE"]))
+// console.log(Adagrams.drawLetters());
 // console.log(Adagrams.usesAvailableLetters('APPLE', ['A', 'P', 'P', 'L', 'E']));
 // console.log(Adagrams.usesAvailableLetters('APPLES', ['A', 'P', 'P', 'L', 'E']));
-
 // console.log(Adagrams.scoreWord('AVAILABLE'))
-
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
