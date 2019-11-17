@@ -30,8 +30,13 @@ let POOL = pool;
 
 const Adagrams = {
   drawLetters() {
-    letters_in_hand = POOL[Math.floor(Math.random() * POOL.length)].slice(0, 9);
-    return letters_in_hand
+    let i = 0;
+    const lettersInHand = new Array(10);
+    while (i < 10) {
+      lettersInHand[i] = POOL[Math.floor(Math.random() * POOL.length)];
+      i += 1;
+    };
+    return lettersInHand
   },
 };
 
