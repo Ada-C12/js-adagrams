@@ -145,13 +145,19 @@ const Adagrams = {
       if (score > maxPoints) {
        maxPoints = score;
       };
+    });
+    let winners = []
+    wordCollection.forEach((object) => {
+      if (Object.values(object).includes(maxPoints)) {
+        winners.push(object);
+      }
     })
+    if (winners.length === 1) {
+      return winners.first;
+    }
+
   },
 }
-
-
-
-
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
