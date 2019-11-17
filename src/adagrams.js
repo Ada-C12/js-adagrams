@@ -42,13 +42,13 @@ const Adagrams = {
     if (word.length == 0) {
       return 0;
     }
-    const onePointLetter = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"];
-    const twoPointLetter = ["D", "G"];
-    const threePointLetter = ["B", "C", "M", "P"];
-    const fourPointLetter = ["F", "H", "V", "W", "Y"];
-    const fivePointLetter = ["K"];
-    const eightPointLetter = ["J", "X"];
-    const tenPointLetter = ["Q", "Z"];
+    const onePointLetter = ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'];
+    const twoPointLetter = ['D', 'G'];
+    const threePointLetter = ['B', 'C', 'M', 'P'];
+    const fourPointLetter = ['F', 'H', 'V', 'W', 'Y'];
+    const fivePointLetter = ['K'];
+    const eightPointLetter = ['J', 'X'];
+    const tenPointLetter = ['Q', 'Z'];
 
     let letters = word.toUpperCase().split('');
     const scores = letters.map((letter) => {
