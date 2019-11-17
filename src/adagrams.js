@@ -74,7 +74,7 @@ const Adagrams = {
 
 
   scoreWord(word) {
-    word.toUpperCase()
+    let string = word.toUpperCase()
     const pointSystem = {
       1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
       2: ["D", "G"],
@@ -86,9 +86,9 @@ const Adagrams = {
     }
 
     let points = 0;
-    let length = word.length;
+    let length = string.length;
     if (length >= 7 && length <= 10) { points += 8 }; 
-    for (let letter of word) {
+    for (let letter of string) {
     
       let elementScore =
       (pointSystem[1].includes(letter)) ? 1    
