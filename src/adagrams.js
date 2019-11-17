@@ -53,6 +53,8 @@ const Adagrams = {
     let scores = [];
     let lengths = [];
     let maxIndices = [];
+    let indexWinner;
+    let winner;
 
     for ( let i = 0; i < words.length; i += 1 ) {
       let score = Adagrams.scoreWord(words[i]);
@@ -70,8 +72,6 @@ const Adagrams = {
       if ( minLength > lengths[i] ) { minLength = lengths[i]; }
     }
     
-    let indexWinner;
-    let winner;
     if (lengths.includes(10) === true) { indexWinner = lengths.indexOf(10); winner =  maxIndices[indexWinner]; }
     else { indexWinner = lengths.indexOf(minLength); winner = maxIndices[indexWinner]; }
     
@@ -92,12 +92,6 @@ function shuffle(array) {
     array[randomIndex] = temporaryValue;
   }
 }
-
-
-
-// console.log(Adagrams.highestScoreFrom(words));
-// console.log(Adagrams.drawLetters());
-
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
