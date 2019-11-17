@@ -59,14 +59,15 @@ const Adagrams = {
     return shuffledArr.splice(0, 10)
   },
 
-
-
+  usesAvailableLetters(input, lettersInHand) {
+    for (let element of input) {
+      if (!lettersInHand.includes(element)) return false;
+    }
+    return true;
+  }
   
-    // Draws 10 letters 
-    // If the letter is drawn, the value should decrease by one
-    // A letter cannot be drawn if the value is 0
-  // },
-};
+}
+
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
