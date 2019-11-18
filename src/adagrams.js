@@ -32,7 +32,7 @@ const Adagrams = {
   },
 
   highestScoreFrom(words) {
-    
+
     function scoreWord(word) {
     const scores = {
     "AEIOULNRST": 1,
@@ -71,14 +71,15 @@ const Adagrams = {
     for (const element in wordStats) { 
       if (element.score === bestWord.score && element.word.length === 10) {
         return element
-      }
-      else 
-        if (element.score === bestWord.score && element.word.length < bestWord.length) {
-          bestWord = element
-        }
+      } else 
+          if (element.score === bestWord.score && element.word.length < bestWord.length) {
+            bestWord = element
+          }
     }
     return bestWord
   },
+
+  
 }
 
 // Do not remove this line or your tests will break!
