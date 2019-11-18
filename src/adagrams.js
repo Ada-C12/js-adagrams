@@ -27,6 +27,8 @@ const poolOfLetters = (
   "Z".repeat(1)
   ).split('');
 
+const valueHash = {"A": 1, "E": 1, "I": 1, "O": 1, "U": 1, "L": 1, "N": 1, "R": 1, "S": 1, "T": 1, "D": 2, "G": 2, "B": 3, "C": 3, "M": 3, "P": 3, "F": 4, "H": 4, "V": 4, "W": 4, "Y": 4, "K": 5, "J": 8, "X": 8, "Q": 10, "Z": 10};
+
 const Adagrams = {
   // thank you stackoverflow: https://stackoverflow.com/questions/3718282/javascript-shuffling-objects-inside-an-object-randomize
   shuffle(letterbank) {
@@ -74,44 +76,22 @@ const Adagrams = {
     }
     return true
   },
+
+  // Wave 3
+  scoreWord(word){
+    let score = 0;
+    let bonus = 8;
+
+    for (let l of word) {
+    score += valueHash[l.toUpperCase()];
+    }
+    if (word.length == 7 || word.length == 8 || word.length == 9 || word.length == 10){
+    score += bonus;
+  }
+    return score;
+  }
 };
 
-
-
-// //         // wave 3
-// //     // return false 
-// //     // function to score words: scoreWord (put this in Adagrams object)
-// //     // word (string)
-// //     // returns integer representing points
-// //     // each letter in word has points value
-// //     // if length is 7,8,9,10, +8 points to score
-
-// //     const scoreWord = 
-// //     split('')
-// //     // map letters
-// //     // if X const, add 1 etc
-// //     catagoryOne = ['A','E','I','O','U','L','N','R','S','T'] = 1
-// //     catagoryTwo = ['D','G'] = 2
-// //     catagoryThree = ['B','C','M','P'] = 3
-// //     catagoryFour = ['F','H','V','W','Y'] = 4
-// //     catagoryFive = ['K'] = 5
-// //     catagorySix = ['J','X'] = 8
-// //     catagorySeven = ['Q','Z'] = 10
-
-
-// //     if scoreWord == catagoryOne += 1
-// //     elsif scoreWord == catagoryTwo += 2
-// //     elsif scoreWord == catagoryThree += 3
-// //     elsif scoreWord == catagoryFour += 4
-// //     elsif scoreWord == catagoryFive += 5
-// //     elsif scoreWord == catagorySix += 8
-// //     elsif scoreWord == catagorySeven += 10
-
-// //     if scoreWord.length == 7 || 8 || 9 || 10
-// //     += 8 score 
-
-
-// Do not remove this line or your tests will break!
 export default Adagrams;
 
 
