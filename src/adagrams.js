@@ -159,7 +159,6 @@ const Adagrams = {
     let shortest = null;
     let index = 0;
     while (index < winners.length) {
-      console.log(winners[index].word)
       if ((winners[index].word).length === 10) {
         return winners[index];
       }
