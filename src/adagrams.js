@@ -68,12 +68,31 @@ const Adagrams = {
       if (handCopy.includes(letter)) {
         const letterIndex = handCopy.indexOf(letter);
         handCopy.splice(letterIndex,1);
-        console.log(`handCopy: ${handCopy}`);
+        // console.log(`handCopy: ${handCopy}`);
         return true;
       } else {return false;}
     });
 
     return validInputs.includes(false) ? false : true;
+  },
+
+  scoreWord(word) {
+    const letterInfo = this.letterInfo;
+    const wordArray = word.toUpperCase().split('');
+
+    const letterPoints = wordArray.map(letter => letterInfo[letter]['points']);
+
+    console.log(letterPoints);
+
+    if (wordArray.length >= 7) {
+      letterPoints.push(8);
+    }
+
+    const wordPoints = letterPoints.reduce((total, points) => total + points, 0);
+
+    return wordPoints;
+
+    
   },
   
 };
