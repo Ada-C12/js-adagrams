@@ -44,6 +44,19 @@ const Adagrams = {
     this.shuffle(poolOfLettersCopy)
     return poolOfLettersCopy.slice(0,10);
   },
+
+  usesAvailableLetters(input, lettersInHand) {
+    let handHash = new Object();
+    for (l in lettersInHand) {
+      if (handHash.hasOwnProperty(l)) {
+        handHash[l] += 1;
+      }
+      else {
+        handHash[l] = 1; 
+      }
+    }
+    console.log(handHash);
+  }
 };
 
 // WAVE 2
@@ -61,60 +74,60 @@ const Adagrams = {
 //     //  if pool.includes?(lettersInHand)
 //     // return true
 
-uses_available_letters(){
-  let uses_available_letters(word, letters_in_hand)
-  hand_hash = letters_in_hand.uniq.map { |x| [x, letters_in_hand.count(x)] }.to_h
-  word_array = word.upcase.split("")
-  letter_check = []
+// uses_available_letters(){
+//   let uses_available_letters(word, letters_in_hand)
+//   hand_hash = letters_in_hand.uniq.map { |x| [x, letters_in_hand.count(x)] }.to_h
+//   word_array = word.upcase.split("")
+//   letter_check = []
 
-  word_array.map do |letter|
-    if hand_hash[letter].class == Integer
-      if hand_hash[letter] >= 1
-        hand_hash[letter] -= 1
-        letter_check << "True"
-      elsif hand_hash[letter] == 0
-        letter_check << "False"
-        end
-        else
-          letter_check << "False"
-        end
-      end
-      return letter_check.include?("False") ? false : true
-    end
-
-
-
-//         // wave 3
-//     // return false 
-//     // function to score words: scoreWord (put this in Adagrams object)
-//     // word (string)
-//     // returns integer representing points
-//     // each letter in word has points value
-//     // if length is 7,8,9,10, +8 points to score
-
-//     const scoreWord = 
-//     split('')
-//     // map letters
-//     // if X const, add 1 etc
-//     catagoryOne = ['A','E','I','O','U','L','N','R','S','T'] = 1
-//     catagoryTwo = ['D','G'] = 2
-//     catagoryThree = ['B','C','M','P'] = 3
-//     catagoryFour = ['F','H','V','W','Y'] = 4
-//     catagoryFive = ['K'] = 5
-//     catagorySix = ['J','X'] = 8
-//     catagorySeven = ['Q','Z'] = 10
+//   word_array.map do |letter|
+//     if hand_hash[letter].class == Integer
+//       if hand_hash[letter] >= 1
+//         hand_hash[letter] -= 1
+//         letter_check << "True"
+//       elsif hand_hash[letter] == 0
+//         letter_check << "False"
+//         end
+//         else
+//           letter_check << "False"
+//         end
+//       end
+//       return letter_check.include?("False") ? false : true
+//     end
 
 
-//     if scoreWord == catagoryOne += 1
-//     elsif scoreWord == catagoryTwo += 2
-//     elsif scoreWord == catagoryThree += 3
-//     elsif scoreWord == catagoryFour += 4
-//     elsif scoreWord == catagoryFive += 5
-//     elsif scoreWord == catagorySix += 8
-//     elsif scoreWord == catagorySeven += 10
 
-//     if scoreWord.length == 7 || 8 || 9 || 10
-//     += 8 score 
+// //         // wave 3
+// //     // return false 
+// //     // function to score words: scoreWord (put this in Adagrams object)
+// //     // word (string)
+// //     // returns integer representing points
+// //     // each letter in word has points value
+// //     // if length is 7,8,9,10, +8 points to score
+
+// //     const scoreWord = 
+// //     split('')
+// //     // map letters
+// //     // if X const, add 1 etc
+// //     catagoryOne = ['A','E','I','O','U','L','N','R','S','T'] = 1
+// //     catagoryTwo = ['D','G'] = 2
+// //     catagoryThree = ['B','C','M','P'] = 3
+// //     catagoryFour = ['F','H','V','W','Y'] = 4
+// //     catagoryFive = ['K'] = 5
+// //     catagorySix = ['J','X'] = 8
+// //     catagorySeven = ['Q','Z'] = 10
+
+
+// //     if scoreWord == catagoryOne += 1
+// //     elsif scoreWord == catagoryTwo += 2
+// //     elsif scoreWord == catagoryThree += 3
+// //     elsif scoreWord == catagoryFour += 4
+// //     elsif scoreWord == catagoryFive += 5
+// //     elsif scoreWord == catagorySix += 8
+// //     elsif scoreWord == catagorySeven += 10
+
+// //     if scoreWord.length == 7 || 8 || 9 || 10
+// //     += 8 score 
 
 
 // Do not remove this line or your tests will break!
