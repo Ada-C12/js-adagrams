@@ -32,8 +32,27 @@ const Adagrams = {
   },
 
   highestScoreFrom(words) {
+    let wordStats = words.map(x => ( { word: x, score: this.scoreWord(x) } ));
+    
+    wordStats.sort(function (a, b) { 
+      return b.score - a.score;
+    });
+    console.log(wordStats);
 
-    function scoreWord(word) {
+    let bestWord = wordStats[0];
+    console.log(`the word with best score after sorting is ${bestWord.word}`)
+
+    for (const element of wordStats) { 
+      if (element.score === bestWord.score && element.word.length === 10) {
+        return element
+      } else if (element.score === bestWord.score && element.word.length <      bestWord.word.length) {
+          bestWord = element
+        }
+    }
+    return bestWord
+  },
+
+  scoreWord(word) {
     const scores = {
     "AEIOULNRST": 1,
     "DG": 2,
@@ -59,27 +78,6 @@ const Adagrams = {
 
     return wordScore
     }
-
-    const wordStats = words.map(x => ( {"word": x, "score": scoreWord(x) } ));
-
-    wordStats.sort(function (a, b) { 
-      return a.score - b.score;
-    });
-
-    let bestWord = wordStats[0];
-
-    for (const element in wordStats) { 
-      if (element.score === bestWord.score && element.word.length === 10) {
-        return element
-      } else 
-          if (element.score === bestWord.score && element.word.length < bestWord.length) {
-            bestWord = element
-          }
-    }
-    return bestWord
-  },
-
-  
 }
 
 // Do not remove this line or your tests will break!
