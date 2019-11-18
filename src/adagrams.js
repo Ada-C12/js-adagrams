@@ -68,23 +68,25 @@ const Adagrams = {
     return score; 
   },
 
-  highestScoreFrom (array) {
-    let words = []
-    array.forEach(function(word)) {
-      const word = {
-        length: word.length,
-        score: scoreWord(word)
-      }
-      words.push(word)
-    }
+  highestScoreFrom(array) {
 
-    let max = {
-      length: 0,
-      score: 0
-    }
-    words.forEach(function(played)) {
-      if (played.score > max.score) || (played.score === max.score && played.length > max.length)
-    }
+    let highest = {
+      length: array[0].length,
+      word: array[0],
+      score: this.scoreWord(array[0])
+    };
+    const that = this
+    array.forEach(function(word) {
+      let currentScore = that.scoreWord(word);
+      if (currentScore >= highest.score && highest.length != 10){
+        highest.word = word;
+        highest.score = currentScore;
+        highest.length = word.length;
+      };
+    });
+
+    delete highest.length;
+    return highest;
   }
 };
 
