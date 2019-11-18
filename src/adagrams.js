@@ -50,9 +50,6 @@ const Adagrams = {
       if (scoreChart[letter]) {
         score += (scoreChart[letter])
       }
-      else {
-        score += 0
-      }
     });
     return score
   }
