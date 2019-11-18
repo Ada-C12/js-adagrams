@@ -31,6 +31,25 @@ const Adagrams = {
   return validHand
   },
 
+  highestScoreFrom(words) {
+    let wordStats = words.map(x => ( { word: x, score: this.scoreWord(x) } ));
+    
+    wordStats.sort(function (a, b) { 
+      return b.score - a.score;
+    });
+
+    let bestWord = wordStats[0];
+
+    for (const element of wordStats) { 
+      if (element.score === bestWord.score && element.word.length === 10) {
+        return element
+      } else if (element.score === bestWord.score && element.word.length <      bestWord.word.length) {
+          bestWord = element
+        }
+    }
+    return bestWord
+  },
+
   scoreWord(word) {
     const scores = {
     "AEIOULNRST": 1,
