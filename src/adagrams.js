@@ -31,6 +31,27 @@ const Adagrams = {
   return validHand
   },
 
+  highestScoreFrom(words) {
+    let wordStats = words.map(x => ( { word: x, score: this.scoreWord(x) } ));
+    
+    wordStats.sort(function (a, b) { 
+      return b.score - a.score;
+    });
+    console.log(wordStats);
+
+    let bestWord = wordStats[0];
+    console.log(`the word with best score after sorting is ${bestWord.word}`)
+
+    for (const element of wordStats) { 
+      if (element.score === bestWord.score && element.word.length === 10) {
+        return element
+      } else if (element.score === bestWord.score && element.word.length <      bestWord.word.length) {
+          bestWord = element
+        }
+    }
+    return bestWord
+  },
+
   scoreWord(word) {
     const scores = {
     "AEIOULNRST": 1,
@@ -40,23 +61,23 @@ const Adagrams = {
     "K": 5,
     "JX": 8,
     "QZ": 10
-  } 
-  const wordArray = word.toUpperCase().split('');
-  let wordScore = 0;
+    } 
+    const wordArray = word.toUpperCase().split('');
+    let wordScore = 0;
 
-  wordArray.forEach( function(char) {
-    for (const key in scores) {
-      if (key.includes(char)) {
-        wordScore += scores[key];
+    wordArray.forEach( function(char) {
+      for (const key in scores) {
+        if (key.includes(char)) {
+          wordScore += scores[key];
+        }
       }
+    });
+    if (wordArray.length > 6) {
+      wordScore += 8;
     }
-  });
-  if (wordArray.length > 6) {
-    wordScore += 8;
-  }
 
-  return wordScore
-  },
+    return wordScore
+    }
 }
 
 // Do not remove this line or your tests will break!
