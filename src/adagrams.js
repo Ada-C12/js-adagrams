@@ -59,23 +59,23 @@ const Adagrams = {
     "K": 5,
     "JX": 8,
     "QZ": 10
-  } 
-  const wordArray = word.toUpperCase().split('');
-  let wordScore = 0;
+    } 
+    const wordArray = word.toUpperCase().split('');
+    let wordScore = 0;
 
-  wordArray.forEach( function(char) {
-    for (const key in scores) {
-      if (key.includes(char)) {
-        wordScore += scores[key];
+    wordArray.forEach( function(char) {
+      for (const key in scores) {
+        if (key.includes(char)) {
+          wordScore += scores[key];
+        }
       }
+    });
+    if (wordArray.length > 6) {
+      wordScore += 8;
     }
-  });
-  if (wordArray.length > 6) {
-    wordScore += 8;
-  }
 
-  return wordScore
-  },
+    return wordScore
+    }
 }
 
 // Do not remove this line or your tests will break!
