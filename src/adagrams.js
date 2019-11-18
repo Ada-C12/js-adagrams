@@ -37,38 +37,26 @@ const Adagrams = {
   },
 
   scoreWord(word) {
+    let score = 0
     if (word.length >= 7) {
-      let score = 8;
-    } else {
-      let score = 0;
+      score = 8;
     };
 
-    const wordArray = word.split("");
-    wordArray.toUpperCase();
+    word = word.toUpperCase();
 
+    const wordArray = word.split("");
+    
     wordArray.forEach(letter => {
       if (scoreChart[letter]) {
-
+        score += (scoreChart[letter])
       }
-    })
+      else {
+        score += 0
+      }
+    });
+    return score
   }
-
 };
-
-// def score_word(word)
-
-//   word = word.upcase
-//   word_array = word.chars
-//   score = 0
-//   if word_array.length >= 7
-//     score = 8
-//   end
-//   word_array.each do |char|
-//     points = score_chart[char]
-//     points = points.to_i
-//     score += points
-//   end
-// end
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
