@@ -153,11 +153,26 @@ const Adagrams = {
       }
     })
     if (winners.length === 1) {
-      return winners.first;
+      return winners[0];
     }
+    let wordLength = 10;
+    let shortest = null;
+    let index = 0;
+    while (index < winners.length) {
+      console.log(winners[index].word)
+      if ((winners[index].word).length === 10) {
+        return winners[index];
+      }
+      if ((winners[index].word).length < wordLength) {
+        wordLength = (winners[index].word).length;
+        shortest = (winners[index]);
+      }
+      index += 1;
+    }
+    return shortest;
+    }
+  }
 
-  },
-}
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
