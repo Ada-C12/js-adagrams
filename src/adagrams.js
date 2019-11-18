@@ -9,7 +9,7 @@ let allLetters = {
   };
 
   const Adagrams = { 
-    drawLetters() {//doesnt work with this, sorry
+    drawLetters() {
       let letters = [];
       for(let letter in allLetters) {
         for(let i = 0; i < allLetters[letter]; i += 1) {
