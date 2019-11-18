@@ -1,6 +1,5 @@
 import Adagrams from 'adagrams';
 
-
 describe('Adagrams', () => {
   describe('drawLetters', () => {
     it('draws ten letters from the letter pool', () => {
