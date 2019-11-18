@@ -32,9 +32,31 @@ const Adagrams = {
   },
 
 
-  usesAvailableLetters(word,drawn) {
-  },
+  usesAvailableLetters(input, lettersInHand) {
+    const hand = {}
+    let outcome = true
+    lettersInHand.forEach(element => {
+      if (hand[element]) {
+        hand[element] += 1;
+      } else {
+        hand[element] = 1;
+      }
+    });
   
+    const letters = input.split('')
+
+    letters.forEach(char => {
+      if (hand[char] < 0) {
+        outcome = false;
+      } else if (hand[char]) {
+        hand[char] -= 1;
+      } else {
+        outcome = false;
+      } 
+    });
+    return outcome;
+    
+  },
 };
 
 // Do not remove this line or your tests will break!
