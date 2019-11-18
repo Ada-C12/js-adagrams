@@ -21,7 +21,54 @@ const Adagrams = {
     console.log(draw);
     return draw
   },
+
+  usesAvailableLetters(input, lettersInHand) {
+    let validPlay = true;
+    const input_array = input.split("")
+    input_array.forEach(letter => {
+      if (!lettersInHand.includes(letter)) {
+        validPlay = false
+      } else {
+        const letterIndex = lettersInHand.indexOf(letter);
+        lettersInHand.splice(letterIndex, 1);
+      }
+    });
+    return validPlay;
+  },
+
+  scoreWord(word) {
+    if (word.length >= 7) {
+      let score = 8;
+    } else {
+      let score = 0;
+    };
+
+    const wordArray = word.split("");
+    wordArray.toUpperCase();
+
+    wordArray.forEach(letter => {
+      if (scoreChart[letter]) {
+
+      }
+    })
+  }
+
 };
+
+// def score_word(word)
+
+//   word = word.upcase
+//   word_array = word.chars
+//   score = 0
+//   if word_array.length >= 7
+//     score = 8
+//   end
+//   word_array.each do |char|
+//     points = score_chart[char]
+//     points = points.to_i
+//     score += points
+//   end
+// end
 
 // Do not remove this line or your tests will break!
 export default Adagrams;
