@@ -1,3 +1,18 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@CEsGutierrez 
+Code Pull requests 0 Projects 0 Wiki Security Pulse
+js-adagrams/src/demo/adagrams.js
+@tildeee tildeee rename 'game' to 'demo game' and all the appropriate files and commit…
+f3a2b32 on May 19
+45 lines (33 sloc)  892 Bytes
+  
 import Real from 'adagrams';
 
 const Stub = {
@@ -42,3 +57,15 @@ const Stub = {
 };
 
 export default Stub;
+© 2019 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
