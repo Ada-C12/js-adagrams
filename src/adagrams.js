@@ -46,8 +46,10 @@ const Adagrams = {
   },
 
   usesAvailableLetters(input, lettersInHand) {
+
+    // Create frequency hash of lettersInHand
     let handHash = new Object();
-    for (l in lettersInHand) {
+    for (let l of lettersInHand) {
       if (handHash.hasOwnProperty(l)) {
         handHash[l] += 1;
       }
@@ -55,45 +57,24 @@ const Adagrams = {
         handHash[l] = 1; 
       }
     }
-    console.log(handHash);
-  }
+
+    // Check if characters from input are in handHash
+    for (let l of input) {
+      if (l in handHash) {
+        if (handHash[l] == 0) {
+          return false
+        }
+        else {
+          handHash[l] -= 1
+        }
+      }
+      else {
+        return false
+      }
+    }
+    return true
+  },
 };
-
-// WAVE 2
-// forin loop
-// undefined not null
-// if not in hand, pop off (don't use an object, keep as array)
-// console.log(Adagrams.drawLetters());
-
-// // logic for wave 2 here
-// // if input .includes(lettersInHand);
-// return true
-// // elseif return false: quantity or lettersInHand
-
-//     usesAvailableLetters(input, lettersInHand)
-//     //  if pool.includes?(lettersInHand)
-//     // return true
-
-// uses_available_letters(){
-//   let uses_available_letters(word, letters_in_hand)
-//   hand_hash = letters_in_hand.uniq.map { |x| [x, letters_in_hand.count(x)] }.to_h
-//   word_array = word.upcase.split("")
-//   letter_check = []
-
-//   word_array.map do |letter|
-//     if hand_hash[letter].class == Integer
-//       if hand_hash[letter] >= 1
-//         hand_hash[letter] -= 1
-//         letter_check << "True"
-//       elsif hand_hash[letter] == 0
-//         letter_check << "False"
-//         end
-//         else
-//           letter_check << "False"
-//         end
-//       end
-//       return letter_check.include?("False") ? false : true
-//     end
 
 
 
