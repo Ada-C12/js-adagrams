@@ -31,7 +31,9 @@ const Adagrams = {
   return validHand
   },
 
-  scoreWord(word) {
+  highestScoreFrom(words) {
+    
+    function scoreWord(word) {
     const scores = {
     "AEIOULNRST": 1,
     "DG": 2,
@@ -40,22 +42,42 @@ const Adagrams = {
     "K": 5,
     "JX": 8,
     "QZ": 10
-  } 
-  const wordArray = word.toUpperCase().split('');
-  let wordScore = 0;
+    } 
+    const wordArray = word.toUpperCase().split('');
+    let wordScore = 0;
 
-  wordArray.forEach( function(char) {
-    for (const key in scores) {
-      if (key.includes(char)) {
-        wordScore += scores[key];
+    wordArray.forEach( function(char) {
+      for (const key in scores) {
+        if (key.includes(char)) {
+          wordScore += scores[key];
+        }
       }
+    });
+    if (wordArray.length > 6) {
+      wordScore += 8;
     }
-  });
-  if (wordArray.length > 6) {
-    wordScore += 8;
-  }
 
-  return wordScore
+    return wordScore
+    }
+
+    const wordStats = words.map(x => ( {"word": x, "score": scoreWord(x) } ));
+
+    wordStats.sort(function (a, b) { 
+      return a.score - b.score;
+    });
+
+    let bestWord = wordStats[0];
+
+    for (const element in wordStats) { 
+      if (element.score === bestWord.score && element.word.length === 10) {
+        return element
+      }
+      else 
+        if (element.score === bestWord.score && element.word.length < bestWord.length) {
+          bestWord = element
+        }
+    }
+    return bestWord
   },
 }
 
