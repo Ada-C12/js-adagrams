@@ -68,9 +68,5 @@ let allLetters = {
   }
 }
 
-// console.log(Adagrams.usesAvailableLetters("hellll", ["K","H","E","L","L","O","P","A"]));
-// console.log(Adagrams.scoreWord("aaaaaaaaa"));
-// console.log(Adagrams.drawLetters())
-
 // Do not remove this line or your tests will break
-// export default Adagrams;
+export default Adagrams;
