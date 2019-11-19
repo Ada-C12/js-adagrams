@@ -40,7 +40,10 @@ const Adagrams = {
     let drawn = [];
     let i = 0;
     while (i < 10) {
-      drawn.push(letters[Math.floor(Math.random() * letters.length)]);
+      let randLetter = (letters[Math.floor(Math.random() * letters.length)]);
+      drawn.push(randLetter)
+      let index = letters.indexOf(randLetter)
+      letters.splice(index, 1)
       i++;
     }
 
